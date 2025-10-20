@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="profile-toolbar">
   <ion-toolbar>
     <ion-title>Profil</ion-title>
   </ion-toolbar>
@@ -28,17 +28,18 @@
 
   <!-- Profile Content -->
   <div *ngIf="!isLoading && !error && profile" class="profile-container">
-    <!-- Header Card with Avatar -->
-    <div class="profile-header">
+    <!-- Header with Gradient Background -->
+    <div class="profile-header"></div>
+
+    <!-- Avatar, Name & Role Container (positioned on header border) -->
+    <div class="profile-info">
       <div class="avatar-container">
         <ion-avatar class="profile-avatar">
           <img [src]="getAvatarUrl()" [alt]="getDisplayName()" />
         </ion-avatar>
       </div>
       <h1 class="profile-name">{{ getDisplayName() }}</h1>
-      <ion-chip color="primary" class="role-chip">
-        <ion-label>{{ getRoleText() }}</ion-label>
-      </ion-chip>
+      <p class="profile-role">{{ getRoleText() }}</p>
     </div>
 
     <!-- Menu List -->

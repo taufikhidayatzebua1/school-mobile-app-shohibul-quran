@@ -1,5 +1,24 @@
 // Profile Page Styles - Modern & Attractive Design
 
+// Top Toolbar - Simple, same as bottom tab bar
+.profile-toolbar {
+  ion-toolbar {
+    --background: var(--ion-background-color, #fff);
+    --min-height: 48px;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --border-width: 0;
+    --box-shadow: none;
+    
+    ion-title {
+      font-size: 16px;
+      font-weight: 600;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
 // Loading State
 .loading-container {
   display: flex;
@@ -7,16 +26,16 @@
   align-items: center;
   justify-content: center;
   min-height: 60vh;
-  gap: 1rem;
+  gap: 16px;
   
   ion-spinner {
     --color: var(--ion-color-primary);
-    transform: scale(1.5);
+    transform: scale(1.1);
   }
   
   p {
     color: var(--ion-color-medium);
-    font-size: 0.9rem;
+    font-size: 12px;
     margin: 0;
   }
 }
@@ -28,17 +47,17 @@
   align-items: center;
   justify-content: center;
   min-height: 60vh;
-  gap: 1rem;
-  padding: 2rem;
+  gap: 16px;
+  padding: 32px;
   text-align: center;
   
   ion-icon {
-    font-size: 4rem;
+    font-size: 48px;
   }
   
   p {
     color: var(--ion-color-danger);
-    font-size: 0.95rem;
+    font-size: 13px;
     margin: 0;
   }
 }
@@ -51,68 +70,35 @@
   background: linear-gradient(180deg, rgba(var(--ion-color-primary-rgb), 0.02) 0%, transparent 100%);
 }
 
-// Profile Header with Avatar - Enhanced
+// Profile Header - Gradient Background Only
 .profile-header {
   position: relative;
-  padding: 3.5rem 1.5rem 2.5rem;
-  text-align: center;
+  height: 100px;
   background: linear-gradient(135deg, 
-    var(--ion-color-primary) 0%, 
-    var(--ion-color-primary-shade) 50%,
-    var(--ion-color-secondary) 100%
+    var(--ion-color-primary-tint) 0%, 
+    var(--ion-color-primary) 50%,
+    var(--ion-color-primary-shade) 100%
   );
-  border-radius: 0 0 2.5rem 2.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 
-    0 10px 30px rgba(var(--ion-color-primary-rgb), 0.3),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  
-  // Decorative circles
-  &::before {
-    content: '';
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    top: -50px;
-    right: -50px;
-    backdrop-filter: blur(10px);
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    bottom: -30px;
-    left: -30px;
-    backdrop-filter: blur(10px);
-  }
+  margin-bottom: 0; // No margin, profile-info will handle spacing
+}
+
+// Profile Info - Avatar, Name & Role Container
+.profile-info {
+  position: relative;
+  margin-top: -40px; // Pull up to overlap header (half of avatar)
+  padding-bottom: 20px; // Space before menu list
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px; // Reduced gap for tighter layout
   
   .avatar-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-    position: relative;
-    z-index: 1;
-    
     .profile-avatar {
-      width: 120px;
-      height: 120px;
-      border: 5px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 
-        0 8px 24px rgba(0, 0, 0, 0.2),
-        0 0 0 8px rgba(255, 255, 255, 0.1);
+      width: 80px;
+      height: 80px;
+      border: 4px solid white;
       background: var(--ion-color-light);
-      transition: transform 0.3s ease;
-      
-      &:hover {
-        transform: scale(1.05);
-      }
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       
       img {
         object-fit: cover;
@@ -121,77 +107,62 @@
   }
   
   .profile-name {
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: white;
-    margin: 0.5rem 0 0.75rem;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 1;
-    letter-spacing: -0.5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    margin: 0;
+    white-space: nowrap;
   }
   
-  .role-chip {
-    --background: rgba(255, 255, 255, 0.25);
-    --color: white;
-    font-weight: 600;
-    backdrop-filter: blur(20px);
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
-    padding: 0.5rem 1.25rem;
-    font-size: 0.9rem;
+  .profile-role {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ion-color-primary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 }
 
 // Menu List - Card Based Design with Groups
 .menu-list {
   background: transparent;
-  padding: 0 1.25rem;
+  padding: 0 14px;
   
   .section-header {
-    margin: 0.75rem 0 1rem;
-    padding-left: 0.5rem;
+    margin: 8px 0 11px;
+    padding-left: 6px;
     
     h3 {
-      font-size: 0.8rem;
+      font-size: 10px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
       color: var(--ion-color-medium);
       margin: 0;
-      padding: 0 0.25rem;
+      padding: 0 3px;
       opacity: 0.7;
     }
   }
   
   .menu-group {
     background: white;
-    border-radius: 1rem;
-    margin-bottom: 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 14px;
     box-shadow: 
       0 2px 8px rgba(0, 0, 0, 0.04),
       0 1px 2px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    &:hover {
-      box-shadow: 
-        0 4px 12px rgba(0, 0, 0, 0.06),
-        0 2px 4px rgba(0, 0, 0, 0.08);
-    }
   }
   
   ion-item {
-    --padding-start: 1.25rem;
-    --padding-end: 1.25rem;
+    --padding-start: 12px;
+    --padding-end: 12px;
     --inner-padding-end: 0;
     --background: transparent;
     --border-radius: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    --min-height: 56px;
+    --min-height: 44px;
     position: relative;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     
@@ -201,63 +172,24 @@
       border-bottom: none;
     }
     
-    // Gradient overlay on hover
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, 
-        rgba(var(--ion-color-primary-rgb), 0.04) 0%, 
-        transparent 100%
-      );
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    &:hover {
-      &::before {
-        opacity: 1;
-      }
-      
-      ion-icon[slot="start"] {
-        transform: scale(1.1);
-      }
-      
-      ion-icon[slot="end"] {
-        opacity: 1;
-        transform: translateX(3px);
-      }
-    }
-    
     &:active {
-      transform: scale(0.98);
+      --background: rgba(0, 0, 0, 0.02);
     }
     
     ion-icon[slot="start"] {
-      font-size: 1.4rem;
-      margin-right: 1rem;
-      transition: transform 0.3s ease;
-      position: relative;
-      z-index: 1;
+      font-size: 15px;
+      margin-right: 10px;
     }
     
     ion-icon[slot="end"] {
-      font-size: 1.2rem;
+      font-size: 14px;
       opacity: 0.4;
-      transition: all 0.3s ease;
-      position: relative;
-      z-index: 1;
     }
     
     ion-label {
-      font-size: 1rem;
+      font-size: 12px;
       font-weight: 500;
       color: var(--ion-color-dark);
-      position: relative;
-      z-index: 1;
       
       &[color="danger"] {
         color: var(--ion-color-danger);
@@ -267,23 +199,9 @@
     
     // Logout item special styling
     &.logout-item {
-      .menu-group {
-        background: linear-gradient(135deg, 
-          rgba(var(--ion-color-danger-rgb), 0.05) 0%, 
-          rgba(var(--ion-color-danger-rgb), 0.02) 100%
-        );
-        border: 1.5px solid rgba(var(--ion-color-danger-rgb), 0.15);
-      }
-      
-      &::before {
-        background: linear-gradient(90deg, 
-          rgba(var(--ion-color-danger-rgb), 0.06) 0%, 
-          transparent 100%
-        );
-      }
-      
-      &:hover {
-        background: rgba(var(--ion-color-danger-rgb), 0.03);
+      ion-icon[slot="start"],
+      ion-label {
+        color: var(--ion-color-danger);
       }
     }
   }
@@ -292,43 +210,41 @@
 // Responsive Design
 @media (max-width: 576px) {
   .profile-header {
-    padding: 3rem 1rem 2rem;
-    border-radius: 0 0 2rem 2rem;
+    height: 100px;
+  }
+  
+  .profile-info {
+    margin-top: -40px;
+    padding-bottom: 20px;
+    gap: 4px;
     
     .avatar-container .profile-avatar {
-      width: 110px;
-      height: 110px;
+      width: 80px;
+      height: 80px;
       border-width: 4px;
     }
     
     .profile-name {
-      font-size: 1.6rem;
+      font-size: 15px;
     }
     
-    .role-chip {
-      font-size: 0.85rem;
-      padding: 0.4rem 1rem;
+    .profile-role {
+      font-size: 11px;
     }
   }
   
   .menu-list {
-    padding: 0 1rem;
-    
-    .menu-group {
-      border-radius: 0.875rem;
-    }
+    padding: 0 14px;
     
     ion-item {
-      --padding-start: 1rem;
-      --padding-end: 1rem;
-      --min-height: 54px;
+      --min-height: 44px;
       
       ion-icon[slot="start"] {
-        font-size: 1.3rem;
+        font-size: 15px;
       }
       
       ion-label {
-        font-size: 0.95rem;
+        font-size: 12px;
       }
     }
   }
@@ -341,20 +257,21 @@
   }
 
   .profile-header {
-    box-shadow: 
-      0 10px 30px rgba(0, 0, 0, 0.4),
-      0 4px 12px rgba(0, 0, 0, 0.3);
-    
-    &::before,
-    &::after {
-      background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .profile-info {
+    .avatar-container .profile-avatar {
+      border-color: var(--ion-color-dark);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
     
-    .avatar-container .profile-avatar {
-      border-color: rgba(255, 255, 255, 0.9);
-      box-shadow: 
-        0 8px 24px rgba(0, 0, 0, 0.3),
-        0 0 0 8px rgba(255, 255, 255, 0.05);
+    .profile-name {
+      color: var(--ion-color-light);
+    }
+    
+    .profile-role {
+      color: var(--ion-color-primary-tint);
     }
   }
   
@@ -410,29 +327,6 @@
           background: rgba(var(--ion-color-danger-rgb), 0.05);
         }
       }
-    }
-  }
-}
-
-// Animation keyframes
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Stagger animation for menu items
-.menu-list ion-item {
-  animation: fadeInUp 0.4s ease-out backwards;
-  
-  @for $i from 1 through 10 {
-    &:nth-child(#{$i}) {
-      animation-delay: #{$i * 0.05}s;
     }
   }
 }
