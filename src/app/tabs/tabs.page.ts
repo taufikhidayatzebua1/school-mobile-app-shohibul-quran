@@ -2,12 +2,12 @@ import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { 
-  home, 
+  home,
   homeOutline,
   heart, 
   heartOutline,
-  newspaper, 
-  newspaperOutline,
+  grid,
+  gridOutline,
   notifications, 
   notificationsOutline,
   person,
@@ -26,12 +26,12 @@ export class TabsPage {
 
   constructor() {
     addIcons({ 
-      home, 
+      home,
       homeOutline,
       heart, 
       heartOutline,
-      newspaper, 
-      newspaperOutline,
+      grid,
+      gridOutline,
       notifications, 
       notificationsOutline,
       person,
