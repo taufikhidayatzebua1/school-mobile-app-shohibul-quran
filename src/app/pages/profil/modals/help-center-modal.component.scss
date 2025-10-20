@@ -1,0 +1,120 @@
+.modal-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ion-color-dark);
+  margin-bottom: 1.5rem;
+}
+
+ion-accordion-group {
+  margin-bottom: 2rem;
+
+  ion-accordion {
+    margin-bottom: 0.75rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
+
+    ion-item {
+      --padding-start: 1rem;
+      --inner-padding-end: 1rem;
+
+      ion-icon {
+        font-size: 1.3rem;
+        margin-right: 0.75rem;
+      }
+
+      .question {
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+    }
+
+    .answer {
+      padding: 1rem 1.25rem;
+      background: var(--ion-color-light);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--ion-color-dark);
+    }
+  }
+}
+
+.contact-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ion-color-light-shade);
+
+  .contact-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-description {
+    font-size: 0.9rem;
+    color: var(--ion-color-medium);
+    margin-bottom: 1rem;
+  }
+
+  .contact-list {
+    background: transparent;
+
+    ion-item {
+      --padding-start: 0;
+      --inner-padding-end: 0;
+      --background: transparent;
+      margin-bottom: 1rem;
+
+      ion-icon {
+        font-size: 1.3rem;
+        margin-right: 1rem;
+      }
+
+      ion-label {
+        p {
+          font-size: 0.75rem;
+          color: var(--ion-color-medium);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 0.25rem;
+        }
+
+        h3 {
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: var(--ion-color-dark);
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .section-title,
+  .contact-title {
+    color: var(--ion-color-light);
+  }
+
+  ion-accordion {
+    .answer {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--ion-color-light);
+    }
+  }
+
+  .contact-list {
+    ion-item {
+      ion-label {
+        h3 {
+          color: var(--ion-color-light);
+        }
+      }
+    }
+  }
+}

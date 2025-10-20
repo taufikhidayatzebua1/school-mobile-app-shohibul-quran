@@ -1,0 +1,60 @@
+.modal-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ion-color-dark);
+  margin-bottom: 0.5rem;
+}
+
+.section-description {
+  font-size: 0.9rem;
+  color: var(--ion-color-medium);
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.password-form {
+  background: transparent;
+  margin-bottom: 2rem;
+
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --background: var(--ion-color-light);
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+
+    ion-icon {
+      font-size: 1.3rem;
+      margin-right: 0.5rem;
+    }
+
+    ion-input {
+      font-size: 1rem;
+    }
+  }
+}
+
+.change-password-btn {
+  --border-radius: 0.75rem;
+  font-weight: 600;
+  height: 50px;
+  margin-top: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .section-title {
+    color: var(--ion-color-light);
+  }
+
+  .password-form {
+    ion-item {
+      --background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

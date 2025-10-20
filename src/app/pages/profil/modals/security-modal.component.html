@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Keamanan Akun</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="modal-content">
+    <h2 class="section-title">Ganti Password</h2>
+    <p class="section-description">
+      Pastikan password baru Anda minimal 8 karakter dan kombinasi huruf, angka,
+      dan simbol untuk keamanan maksimal.
+    </p>
+
+    <ion-list lines="none" class="password-form">
+      <ion-item>
+        <ion-icon
+          name="lock-closed-outline"
+          slot="start"
+          color="primary"
+        ></ion-icon>
+        <ion-input
+          label="Password Saat Ini"
+          labelPlacement="floating"
+          [type]="showCurrentPassword ? 'text' : 'password'"
+          [(ngModel)]="currentPassword"
+          placeholder="Masukkan password saat ini"
+        ></ion-input>
+        <ion-button
+          fill="clear"
+          slot="end"
+          (click)="showCurrentPassword = !showCurrentPassword"
+        >
+          <ion-icon
+            [name]="showCurrentPassword ? 'eye-off-outline' : 'eye-outline'"
+            slot="icon-only"
+          ></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon
+          name="lock-closed-outline"
+          slot="start"
+          color="primary"
+        ></ion-icon>
+        <ion-input
+          label="Password Baru"
+          labelPlacement="floating"
+          [type]="showNewPassword ? 'text' : 'password'"
+          [(ngModel)]="newPassword"
+          placeholder="Masukkan password baru"
+        ></ion-input>
+        <ion-button
+          fill="clear"
+          slot="end"
+          (click)="showNewPassword = !showNewPassword"
+        >
+          <ion-icon
+            [name]="showNewPassword ? 'eye-off-outline' : 'eye-outline'"
+            slot="icon-only"
+          ></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon
+          name="lock-closed-outline"
+          slot="start"
+          color="primary"
+        ></ion-icon>
+        <ion-input
+          label="Konfirmasi Password Baru"
+          labelPlacement="floating"
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          [(ngModel)]="confirmPassword"
+          placeholder="Konfirmasi password baru"
+        ></ion-input>
+        <ion-button
+          fill="clear"
+          slot="end"
+          (click)="showConfirmPassword = !showConfirmPassword"
+        >
+          <ion-icon
+            [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'"
+            slot="icon-only"
+          ></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-button
+      expand="block"
+      (click)="changePassword()"
+      class="change-password-btn"
+    >
+      Ganti Password
+    </ion-button>
+  </div>
+</ion-content>

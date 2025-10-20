@@ -5,10 +5,6 @@ import {
   IonHeader, 
   IonTitle, 
   IonToolbar,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
   IonAvatar,
   IonLabel,
   IonItem,
@@ -20,11 +16,18 @@ import {
   IonRefresher,
   IonRefresherContent,
   AlertController,
-  ToastController
+  ToastController,
+  ModalController
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { UserProfile } from '../../core/models/user.model';
+import { AccountInfoModalComponent } from './modals/account-info-modal.component';
+import { SecurityModalComponent } from './modals/security-modal.component';
+import { HelpCenterModalComponent } from './modals/help-center-modal.component';
+import { TermsModalComponent } from './modals/terms-modal.component';
+import { PrivacyModalComponent } from './modals/privacy-modal.component';
+import { AboutModalComponent } from './modals/about-modal.component';
 import { 
   personOutline, 
   mailOutline, 
@@ -37,7 +40,13 @@ import {
   logOutOutline,
   refreshOutline,
   cardOutline,
-  alertCircleOutline
+  alertCircleOutline,
+  chevronForwardOutline,
+  shieldCheckmarkOutline,
+  helpCircleOutline,
+  documentTextOutline,
+  lockClosedOutline,
+  informationCircleOutline
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
@@ -52,10 +61,6 @@ import { addIcons } from 'ionicons';
     IonHeader,
     IonTitle,
     IonToolbar,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
     IonAvatar,
     IonLabel,
     IonItem,
@@ -77,7 +82,8 @@ export class ProfilPage implements OnInit {
     private authService: AuthService,
     private router: Router,
     private alertController: AlertController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private modalCtrl: ModalController
   ) {
     // Register icons
     addIcons({
@@ -92,7 +98,13 @@ export class ProfilPage implements OnInit {
       logOutOutline,
       refreshOutline,
       cardOutline,
-      alertCircleOutline
+      alertCircleOutline,
+      chevronForwardOutline,
+      shieldCheckmarkOutline,
+      helpCircleOutline,
+      documentTextOutline,
+      lockClosedOutline,
+      informationCircleOutline
     });
   }
 
@@ -270,5 +282,82 @@ export class ProfilPage implements OnInit {
       position: 'top'
     });
     await toast.present();
+  }
+
+  /**
+   * Open Account Info Modal
+   */
+  async openAccountInfo() {
+    if (!this.profile) return;
+
+    const modal = await this.modalCtrl.create({
+      component: AccountInfoModalComponent,
+      componentProps: {
+        profile: this.profile
+      },
+      presentingElement: await this.modalCtrl.getTop()
+    });
+
+    await modal.present();
+  }
+
+  /**
+   * Open Security Modal
+   */
+  async openSecurity() {
+    const modal = await this.modalCtrl.create({
+      component: SecurityModalComponent,
+      presentingElement: await this.modalCtrl.getTop()
+    });
+
+    await modal.present();
+  }
+
+  /**
+   * Open Help Center Modal
+   */
+  async openHelpCenter() {
+    const modal = await this.modalCtrl.create({
+      component: HelpCenterModalComponent,
+      presentingElement: await this.modalCtrl.getTop()
+    });
+
+    await modal.present();
+  }
+
+  /**
+   * Open Terms Modal
+   */
+  async openTerms() {
+    const modal = await this.modalCtrl.create({
+      component: TermsModalComponent,
+      presentingElement: await this.modalCtrl.getTop()
+    });
+
+    await modal.present();
+  }
+
+  /**
+   * Open Privacy Modal
+   */
+  async openPrivacy() {
+    const modal = await this.modalCtrl.create({
+      component: PrivacyModalComponent,
+      presentingElement: await this.modalCtrl.getTop()
+    });
+
+    await modal.present();
+  }
+
+  /**
+   * Open About Modal
+   */
+  async openAbout() {
+    const modal = await this.modalCtrl.create({
+      component: AboutModalComponent,
+      presentingElement: await this.modalCtrl.getTop()
+    });
+
+    await modal.present();
   }
 }

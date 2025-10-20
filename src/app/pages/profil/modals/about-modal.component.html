@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tentang Aplikasi</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="modal-content">
+    <div class="app-logo">
+      <ion-icon name="information-circle-outline" color="primary"></ion-icon>
+    </div>
+
+    <h1 class="app-name">{{ appInfo.name }}</h1>
+    <p class="app-tagline">Sistem Informasi Manajemen Sekolah Quran</p>
+
+    <ion-list lines="none" class="info-list">
+      <ion-item>
+        <ion-icon
+          name="code-slash-outline"
+          slot="start"
+          color="primary"
+        ></ion-icon>
+        <ion-label>
+          <p>Versi</p>
+          <h3>{{ appInfo.version }}</h3>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="build-outline" slot="start" color="primary"></ion-icon>
+        <ion-label>
+          <p>Build Number</p>
+          <h3>{{ appInfo.buildNumber }}</h3>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon
+          name="information-circle-outline"
+          slot="start"
+          color="primary"
+        ></ion-icon>
+        <ion-label>
+          <p>Tanggal Rilis</p>
+          <h3>{{ appInfo.releaseDate }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <div class="description">
+      <h2>Tentang Aplikasi</h2>
+      <p>
+        Sekolah Quran adalah aplikasi manajemen sekolah yang dirancang khusus
+        untuk membantu administrasi dan pembelajaran di lembaga pendidikan
+        Quran. Aplikasi ini menyediakan fitur-fitur untuk guru, siswa, orang
+        tua, dan kepala sekolah dalam mengelola aktivitas pembelajaran, hafalan,
+        dan komunikasi.
+      </p>
+    </div>
+
+    <div class="features">
+      <h2>Fitur Utama</h2>
+      <ul>
+        <li>Manajemen data siswa dan guru</li>
+        <li>Pelacakan progress hafalan Quran</li>
+        <li>Sistem penilaian dan rapor</li>
+        <li>Notifikasi dan pengumuman</li>
+        <li>Dashboard untuk monitoring</li>
+        <li>Manajemen donasi</li>
+      </ul>
+    </div>
+
+    <div class="copyright">
+      <p>&copy; 2024 Sekolah Quran. All rights reserved.</p>
+      <p class="developer">Developed with ❤️ for Islamic Education</p>
+    </div>
+  </div>
+</ion-content>
