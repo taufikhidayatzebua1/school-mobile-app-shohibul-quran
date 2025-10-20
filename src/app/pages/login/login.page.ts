@@ -21,7 +21,7 @@ import {
   LoadingController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { personOutline, lockClosedOutline, eyeOutline, eyeOffOutline } from 'ionicons/icons';
+import { mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline } from 'ionicons/icons';
 import { AuthService } from '../../core/services/auth.service';
 import { LoginRequest } from '../../core/models/user.model';
 
@@ -51,7 +51,7 @@ import { LoginRequest } from '../../core/models/user.model';
 })
 export class LoginPage implements OnInit {
   credentials: LoginRequest = {
-    username: '',
+    email: '',
     password: ''
   };
 
@@ -64,7 +64,7 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private loadingController: LoadingController
   ) {
-    addIcons({ personOutline, lockClosedOutline, eyeOutline, eyeOffOutline });
+    addIcons({ mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline });
   }
 
   ngOnInit() {
@@ -86,8 +86,8 @@ export class LoginPage implements OnInit {
    */
   async onLogin() {
     // Validate inputs
-    if (!this.credentials.username || !this.credentials.password) {
-      await this.presentToast('Silakan isi username dan password', 'warning');
+    if (!this.credentials.email || !this.credentials.password) {
+      await this.presentToast('Silakan isi email dan password', 'warning');
       return;
     }
 

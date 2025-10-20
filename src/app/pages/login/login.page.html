@@ -20,16 +20,16 @@
 
       <ion-card-content>
         <form (ngSubmit)="onLogin()">
-          <!-- Username Input -->
+          <!-- Email Input -->
           <ion-item lines="full">
-            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
             <ion-input
-              label="Username"
+              label="Email"
               labelPlacement="floating"
-              type="text"
-              [(ngModel)]="credentials.username"
-              name="username"
-              placeholder="Masukkan username"
+              type="email"
+              [(ngModel)]="credentials.email"
+              name="email"
+              placeholder="Masukkan email"
               [disabled]="isLoading"
               required
             ></ion-input>
@@ -69,7 +69,7 @@
           <ion-button
             expand="block"
             type="submit"
-            [disabled]="isLoading || !credentials.username || !credentials.password"
+            [disabled]="isLoading || !credentials.email || !credentials.password"
             class="ion-margin-top"
           >
             <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
