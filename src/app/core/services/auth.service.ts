@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { User, LoginRequest, LoginResponse } from '../models/user.model';
+import { User, LoginRequest, LoginResponse, UserProfile, ProfileResponse } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -99,12 +99,25 @@ export class AuthService {
   /**
    * Get current user profile from API
    */
-  getUserProfile(): Observable<User> {
-    return this.http.get<any>(`${environment.apiUrl}/user/profile`).pipe(
+  getUserProfile(): Observable<UserProfile> {
+    return this.http.get<ProfileResponse>(`${environment.apiUrl}/auth/profile`).pipe(
       map(response => response.data),
-      tap(user => {
+      tap(profile => {
+        // Update current user with basic info
+        const user: User = {
+          id: profile.id,
+          name: profile.name,
+          username: profile.username,
+          email: profile.email,
+          role: profile.role,
+          is_active: profile.is_active
+        };
         this.storeUser(user);
         this.currentUserSubject.next(user);
+      }),
+      catchError(error => {
+        console.error('Get profile error:', error);
+        return throwError(() => error);
       })
     );
   }

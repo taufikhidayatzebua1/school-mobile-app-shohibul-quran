@@ -1,12 +1,274 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonContent } from '@ionic/angular/standalone';
+import { 
+  IonContent, 
+  IonHeader, 
+  IonTitle, 
+  IonToolbar,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonAvatar,
+  IonLabel,
+  IonItem,
+  IonList,
+  IonButton,
+  IonIcon,
+  IonSpinner,
+  IonChip,
+  IonRefresher,
+  IonRefresherContent,
+  AlertController,
+  ToastController
+} from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { UserProfile } from '../../core/models/user.model';
+import { 
+  personOutline, 
+  mailOutline, 
+  callOutline, 
+  locationOutline,
+  schoolOutline,
+  briefcaseOutline,
+  cashOutline,
+  calendarOutline,
+  logOutOutline,
+  refreshOutline,
+  cardOutline,
+  alertCircleOutline
+} from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.page.html',
   styleUrls: ['./profil.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonContent],
+  imports: [
+    CommonModule, 
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonAvatar,
+    IonLabel,
+    IonItem,
+    IonList,
+    IonButton,
+    IonIcon,
+    IonSpinner,
+    IonChip,
+    IonRefresher,
+    IonRefresherContent
+  ],
 })
-export class ProfilPage {}
+export class ProfilPage implements OnInit {
+  profile: UserProfile | null = null;
+  isLoading = true;
+  error: string | null = null;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alertController: AlertController,
+    private toastController: ToastController
+  ) {
+    // Register icons
+    addIcons({
+      personOutline,
+      mailOutline,
+      callOutline,
+      locationOutline,
+      schoolOutline,
+      briefcaseOutline,
+      cashOutline,
+      calendarOutline,
+      logOutOutline,
+      refreshOutline,
+      cardOutline,
+      alertCircleOutline
+    });
+  }
+
+  ngOnInit() {
+    this.loadProfile();
+  }
+
+  /**
+   * Load user profile from API
+   */
+  loadProfile() {
+    this.isLoading = true;
+    this.error = null;
+
+    this.authService.getUserProfile().subscribe({
+      next: (profile) => {
+        this.profile = profile;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error loading profile:', error);
+        this.isLoading = false;
+        
+        // Handle 401 Unauthorized specifically
+        if (error?.status === 401) {
+          this.error = 'Sesi Anda telah berakhir. Silakan login kembali.';
+          this.showToast('Sesi berakhir, silakan login kembali', 'warning');
+          // Redirect to login after a short delay
+          setTimeout(() => {
+            this.router.navigate(['/login'], { replaceUrl: true });
+          }, 2000);
+        } else {
+          const errorMsg = error?.error?.message || error?.message || 'Gagal memuat profil';
+          this.error = errorMsg;
+          this.showToast(errorMsg, 'danger');
+        }
+      }
+    });
+  }
+
+  /**
+   * Refresh profile data
+   */
+  handleRefresh(event: any) {
+    this.authService.getUserProfile().subscribe({
+      next: (profile) => {
+        this.profile = profile;
+        event.target.complete();
+        this.showToast('Profil berhasil diperbarui', 'success');
+      },
+      error: (error) => {
+        console.error('Error refreshing profile:', error);
+        event.target.complete();
+        this.showToast('Gagal memperbarui profil', 'danger');
+      }
+    });
+  }
+
+  /**
+   * Logout user with confirmation
+   */
+  async logout() {
+    const alert = await this.alertController.create({
+      header: 'Konfirmasi Logout',
+      message: 'Apakah Anda yakin ingin keluar?',
+      buttons: [
+        {
+          text: 'Batal',
+          role: 'cancel'
+        },
+        {
+          text: 'Logout',
+          role: 'confirm',
+          handler: () => {
+            this.performLogout();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  /**
+   * Perform logout action
+   */
+  private performLogout() {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.showToast('Berhasil logout', 'success');
+        this.router.navigate(['/login'], { replaceUrl: true });
+      },
+      error: (error) => {
+        console.error('Logout error:', error);
+        // Still navigate to login even if API fails
+        this.showToast('Berhasil logout', 'success');
+        this.router.navigate(['/login'], { replaceUrl: true });
+      }
+    });
+  }
+
+  /**
+   * Get avatar URL or default
+   */
+  getAvatarUrl(): string {
+    if (this.profile?.siswa?.url_photo) {
+      return this.profile.siswa.url_photo;
+    }
+    if (this.profile?.guru?.url_photo) {
+      return this.profile.guru.url_photo;
+    }
+    if (this.profile?.orang_tua?.url_photo) {
+      return this.profile.orang_tua.url_photo;
+    }
+    return 'assets/icon/default-avatar.png';
+  }
+
+  /**
+   * Get display name
+   */
+  getDisplayName(): string {
+    if (this.profile?.siswa?.nama) {
+      return this.profile.siswa.nama;
+    }
+    if (this.profile?.guru?.nama) {
+      return this.profile.guru.nama;
+    }
+    if (this.profile?.orang_tua?.nama) {
+      return this.profile.orang_tua.nama;
+    }
+    return this.profile?.name || 'User';
+  }
+
+  /**
+   * Get role display text
+   */
+  getRoleText(): string {
+    const roleMap: { [key: string]: string } = {
+      'siswa': 'Siswa',
+      'orang-tua': 'Orang Tua',
+      'guru': 'Guru',
+      'wali-kelas': 'Wali Kelas',
+      'kepala-sekolah': 'Kepala Sekolah',
+      'tata-usaha': 'Tata Usaha',
+      'yayasan': 'Yayasan',
+      'admin': 'Admin',
+      'super-admin': 'Super Admin'
+    };
+    return roleMap[this.profile?.role || ''] || this.profile?.role || 'User';
+  }
+
+  /**
+   * Format date to Indonesian format
+   */
+  formatDate(dateString: string | null): string {
+    if (!dateString) return '-';
+    
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = { 
+      day: 'numeric', 
+      month: 'long', 
+      year: 'numeric' 
+    };
+    return date.toLocaleDateString('id-ID', options);
+  }
+
+  /**
+   * Show toast message
+   */
+  private async showToast(message: string, color: 'success' | 'danger' | 'warning' = 'success') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      color,
+      position: 'top'
+    });
+    await toast.present();
+  }
+}

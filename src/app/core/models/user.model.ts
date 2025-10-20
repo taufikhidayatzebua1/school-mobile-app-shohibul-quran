@@ -89,3 +89,101 @@ export interface ResetPasswordRequest {
   password: string;
   password_confirmation: string;
 }
+
+/**
+ * Kelas interface for Siswa
+ */
+export interface Kelas {
+  id: number;
+  nama: string;
+  ruangan: string | null;
+  tingkat: number | null;
+}
+
+/**
+ * Siswa profile data
+ */
+export interface SiswaProfile {
+  id: number;
+  nis: string;
+  nama: string;
+  jenis_kelamin: 'L' | 'P' | null;
+  jenis_kelamin_text: string | null;
+  tempat_lahir: string | null;
+  tanggal_lahir: string | null;
+  alamat: string | null;
+  no_hp: string | null;
+  tahun_masuk: number | null;
+  url_photo: string | null;
+  url_cover: string | null;
+  is_active: boolean;
+  kelas: Kelas | null;
+}
+
+/**
+ * Guru profile data
+ */
+export interface GuruProfile {
+  id: number;
+  nip: string | null;
+  nama: string;
+  jenis_kelamin: 'L' | 'P' | null;
+  jenis_kelamin_text: string | null;
+  tempat_lahir: string | null;
+  tanggal_lahir: string | null;
+  alamat: string | null;
+  no_hp: string | null;
+  url_photo: string | null;
+  url_cover: string | null;
+  is_active: boolean;
+}
+
+/**
+ * Orang Tua profile data
+ */
+export interface OrangTuaProfile {
+  id: number;
+  nama: string;
+  jenis_kelamin: 'L' | 'P' | null;
+  jenis_kelamin_text: string | null;
+  tempat_lahir: string | null;
+  tanggal_lahir: string | null;
+  alamat: string | null;
+  no_hp: string | null;
+  pendidikan: string | null;
+  pekerjaan: string | null;
+  penghasilan: number | null;
+  penghasilan_formatted: string | null;
+  url_photo: string | null;
+  url_cover: string | null;
+  is_active: boolean;
+}
+
+/**
+ * User profile interface matching backend UserProfileResource
+ * Includes role-specific data and timestamps
+ */
+export interface UserProfile {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  email_verified_at: string | null;
+  role: UserRole;
+  is_active: boolean;
+  created_at: string | null;
+  updated_at: string | null;
+  // Role-specific data (conditional based on role)
+  siswa?: SiswaProfile | null;
+  guru?: GuruProfile | null;
+  orang_tua?: OrangTuaProfile | null;
+}
+
+/**
+ * Profile response from backend
+ */
+export interface ProfileResponse {
+  success: boolean;
+  message: string;
+  data: UserProfile;
+}
