@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/sq-backend/public/api/v1', // Update sesuai dengan URL backend Anda
+  apiUrl: 'http://localhost:8000/api',
   apiVersion: 'v1'
 };
 
