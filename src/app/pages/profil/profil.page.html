@@ -43,117 +43,147 @@
 
     <!-- Menu List -->
     <ion-list class="menu-list" lines="none">
-      <ion-item button (click)="openAccountInfo()" detail="false">
-        <ion-icon name="person-outline" slot="start" color="primary"></ion-icon>
-        <ion-label>
-          <h2>Informasi Profil</h2>
-          <p>Lihat detail informasi profil Anda</p>
-        </ion-label>
-        <ion-icon
-          name="chevron-forward-outline"
-          slot="end"
-          color="medium"
-        ></ion-icon>
-      </ion-item>
+      <!-- Group 1: Profile & Security -->
+      <div class="menu-group">
+        <ion-item
+          button
+          (click)="openAccountInfo()"
+          detail="false"
+          class="group-item-first"
+        >
+          <ion-icon
+            name="person-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>Informasi Profil</ion-label>
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            color="medium"
+          ></ion-icon>
+        </ion-item>
 
-      <ion-item button (click)="openSecurity()" detail="false">
-        <ion-icon
-          name="lock-closed-outline"
-          slot="start"
-          color="primary"
-        ></ion-icon>
-        <ion-label>
-          <h2>Keamanan Akun</h2>
-          <p>Ubah password dan pengaturan keamanan</p>
-        </ion-label>
-        <ion-icon
-          name="chevron-forward-outline"
-          slot="end"
-          color="medium"
-        ></ion-icon>
-      </ion-item>
+        <ion-item
+          button
+          (click)="openSecurity()"
+          detail="false"
+          class="group-item-last"
+        >
+          <ion-icon
+            name="lock-closed-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>Keamanan Akun</ion-label>
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            color="medium"
+          ></ion-icon>
+        </ion-item>
+      </div>
 
-      <ion-item button (click)="openHelpCenter()" detail="false">
-        <ion-icon
-          name="help-circle-outline"
-          slot="start"
-          color="primary"
-        ></ion-icon>
-        <ion-label>
-          <h2>Pusat Bantuan</h2>
-          <p>FAQ dan informasi kontak dukungan</p>
-        </ion-label>
-        <ion-icon
-          name="chevron-forward-outline"
-          slot="end"
-          color="medium"
-        ></ion-icon>
-      </ion-item>
+      <!-- Group 2: Help & Info -->
+      <div class="menu-group">
+        <ion-item
+          button
+          (click)="openHelpCenter()"
+          detail="false"
+          class="group-item-first"
+        >
+          <ion-icon
+            name="help-circle-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>Pusat Bantuan</ion-label>
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            color="medium"
+          ></ion-icon>
+        </ion-item>
 
-      <ion-item button (click)="openTerms()" detail="false">
-        <ion-icon
-          name="document-text-outline"
-          slot="start"
-          color="primary"
-        ></ion-icon>
-        <ion-label>
-          <h2>Syarat & Ketentuan</h2>
-          <p>Ketentuan penggunaan aplikasi</p>
-        </ion-label>
-        <ion-icon
-          name="chevron-forward-outline"
-          slot="end"
-          color="medium"
-        ></ion-icon>
-      </ion-item>
+        <ion-item
+          button
+          (click)="openTerms()"
+          detail="false"
+          class="group-item-middle"
+        >
+          <ion-icon
+            name="document-text-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>Syarat & Ketentuan</ion-label>
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            color="medium"
+          ></ion-icon>
+        </ion-item>
 
-      <ion-item button (click)="openPrivacy()" detail="false">
-        <ion-icon
-          name="shield-checkmark-outline"
-          slot="start"
-          color="primary"
-        ></ion-icon>
-        <ion-label>
-          <h2>Kebijakan Privasi</h2>
-          <p>Cara kami melindungi data Anda</p>
-        </ion-label>
-        <ion-icon
-          name="chevron-forward-outline"
-          slot="end"
-          color="medium"
-        ></ion-icon>
-      </ion-item>
+        <ion-item
+          button
+          (click)="openPrivacy()"
+          detail="false"
+          class="group-item-middle"
+        >
+          <ion-icon
+            name="shield-checkmark-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>Kebijakan Privasi</ion-label>
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            color="medium"
+          ></ion-icon>
+        </ion-item>
 
-      <ion-item button (click)="openAbout()" detail="false">
-        <ion-icon
-          name="information-circle-outline"
-          slot="start"
-          color="primary"
-        ></ion-icon>
-        <ion-label>
-          <h2>Tentang Aplikasi</h2>
-          <p>Versi dan informasi aplikasi</p>
-        </ion-label>
-        <ion-icon
-          name="chevron-forward-outline"
-          slot="end"
-          color="medium"
-        ></ion-icon>
-      </ion-item>
+        <ion-item
+          button
+          (click)="openAbout()"
+          detail="false"
+          class="group-item-last"
+        >
+          <ion-icon
+            name="information-circle-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>Tentang Aplikasi</ion-label>
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            color="medium"
+          ></ion-icon>
+        </ion-item>
+      </div>
 
-      <!-- Logout Button -->
-      <ion-item button (click)="logout()" detail="false" class="logout-item">
-        <ion-icon name="log-out-outline" slot="start" color="danger"></ion-icon>
-        <ion-label color="danger">
-          <h2>Keluar</h2>
-          <p>Logout dari aplikasi</p>
-        </ion-label>
-        <ion-icon
-          name="chevron-forward-outline"
-          slot="end"
-          color="medium"
-        ></ion-icon>
-      </ion-item>
+      <!-- Group 3: Logout (standalone) -->
+      <div class="menu-group">
+        <ion-item
+          button
+          (click)="logout()"
+          detail="false"
+          class="logout-item group-item-single"
+        >
+          <ion-icon
+            name="log-out-outline"
+            slot="start"
+            color="danger"
+          ></ion-icon>
+          <ion-label color="danger">Keluar</ion-label>
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            color="medium"
+          ></ion-icon>
+        </ion-item>
+      </div>
     </ion-list>
   </div>
 </ion-content>

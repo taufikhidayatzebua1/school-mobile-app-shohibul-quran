@@ -1,4 +1,4 @@
-// Profile Page Styles - Minimalist Modern Design with Menu-based Navigation
+// Profile Page Styles - Modern & Attractive Design
 
 // Loading State
 .loading-container {
@@ -48,29 +48,71 @@
   padding: 0 0 2rem 0;
   max-width: 800px;
   margin: 0 auto;
+  background: linear-gradient(180deg, rgba(var(--ion-color-primary-rgb), 0.02) 0%, transparent 100%);
 }
 
-// Profile Header with Avatar
+// Profile Header with Avatar - Enhanced
 .profile-header {
   position: relative;
-  padding: 3rem 1rem 2rem;
+  padding: 3.5rem 1.5rem 2.5rem;
   text-align: center;
-  background: linear-gradient(135deg, var(--ion-color-primary) 0%, var(--ion-color-primary-shade) 100%);
-  border-radius: 0 0 2rem 2rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, 
+    var(--ion-color-primary) 0%, 
+    var(--ion-color-primary-shade) 50%,
+    var(--ion-color-secondary) 100%
+  );
+  border-radius: 0 0 2.5rem 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 
+    0 10px 30px rgba(var(--ion-color-primary-rgb), 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  
+  // Decorative circles
+  &::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    top: -50px;
+    right: -50px;
+    backdrop-filter: blur(10px);
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    bottom: -30px;
+    left: -30px;
+    backdrop-filter: blur(10px);
+  }
   
   .avatar-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 1;
     
     .profile-avatar {
       width: 120px;
       height: 120px;
-      border: 4px solid rgba(255, 255, 255, 0.9);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border: 5px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.2),
+        0 0 0 8px rgba(255, 255, 255, 0.1);
       background: var(--ion-color-light);
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
       
       img {
         object-fit: cover;
@@ -79,41 +121,99 @@
   }
   
   .profile-name {
-    font-size: 1.75rem;
-    font-weight: 600;
+    font-size: 1.9rem;
+    font-weight: 700;
     color: white;
-    margin: 0.5rem 0;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 0.5rem 0 0.75rem;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.5px;
   }
   
   .role-chip {
-    --background: rgba(255, 255, 255, 0.2);
+    --background: rgba(255, 255, 255, 0.25);
     --color: white;
-    font-weight: 500;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
   }
 }
 
-// Menu List
+// Menu List - Card Based Design with Groups
 .menu-list {
   background: transparent;
-  padding: 0 1rem;
+  padding: 0 1.25rem;
   
-  ion-item {
-    --padding-start: 1rem;
-    --padding-end: 1rem;
-    --inner-padding-end: 0;
-    --background: var(--ion-color-light);
-    --border-radius: 0.75rem;
-    margin-bottom: 0.75rem;
-    border-radius: 0.75rem;
-    transition: all 0.2s ease;
-    cursor: pointer;
+  .menu-group {
+    background: white;
+    border-radius: 1rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      0 1px 2px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
     &:hover {
-      transform: translateX(4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+  }
+  
+  ion-item {
+    --padding-start: 1.25rem;
+    --padding-end: 1.25rem;
+    --inner-padding-end: 0;
+    --background: transparent;
+    --border-radius: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    --min-height: 56px;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    
+    // Remove border for last item in group
+    &.group-item-last,
+    &.group-item-single {
+      border-bottom: none;
+    }
+    
+    // Gradient overlay on hover
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, 
+        rgba(var(--ion-color-primary-rgb), 0.04) 0%, 
+        transparent 100%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+      
+      ion-icon[slot="start"] {
+        transform: scale(1.1);
+      }
+      
+      ion-icon[slot="end"] {
+        opacity: 1;
+        transform: translateX(3px);
+      }
     }
     
     &:active {
@@ -121,51 +221,53 @@
     }
     
     ion-icon[slot="start"] {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin-right: 1rem;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
     
     ion-icon[slot="end"] {
       font-size: 1.2rem;
-      opacity: 0.5;
+      opacity: 0.4;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
     
     ion-label {
-      margin: 1rem 0;
-      
-      h2 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--ion-color-dark);
-        margin-bottom: 0.25rem;
-      }
-      
-      p {
-        font-size: 0.85rem;
-        color: var(--ion-color-medium);
-        margin: 0;
-        line-height: 1.4;
-      }
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ion-color-dark);
+      position: relative;
+      z-index: 1;
       
       &[color="danger"] {
-        h2 {
-          color: var(--ion-color-danger);
-        }
-        
-        p {
-          color: var(--ion-color-danger-shade);
-        }
+        color: var(--ion-color-danger);
+        font-weight: 600;
       }
     }
     
+    // Logout item special styling
     &.logout-item {
-      --background: rgba(var(--ion-color-danger-rgb), 0.05);
-      margin-top: 1rem;
-      border: 1px solid rgba(var(--ion-color-danger-rgb), 0.1);
+      .menu-group {
+        background: linear-gradient(135deg, 
+          rgba(var(--ion-color-danger-rgb), 0.05) 0%, 
+          rgba(var(--ion-color-danger-rgb), 0.02) 100%
+        );
+        border: 1.5px solid rgba(var(--ion-color-danger-rgb), 0.15);
+      }
+      
+      &::before {
+        background: linear-gradient(90deg, 
+          rgba(var(--ion-color-danger-rgb), 0.06) 0%, 
+          transparent 100%
+        );
+      }
       
       &:hover {
-        --background: rgba(var(--ion-color-danger-rgb), 0.08);
-        border-color: rgba(var(--ion-color-danger-rgb), 0.2);
+        background: rgba(var(--ion-color-danger-rgb), 0.03);
       }
     }
   }
@@ -174,34 +276,43 @@
 // Responsive Design
 @media (max-width: 576px) {
   .profile-header {
-    padding: 2rem 1rem 1.5rem;
+    padding: 3rem 1rem 2rem;
+    border-radius: 0 0 2rem 2rem;
     
     .avatar-container .profile-avatar {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
+      border-width: 4px;
     }
     
     .profile-name {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+    }
+    
+    .role-chip {
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
     }
   }
   
   .menu-list {
-    padding: 0 0.75rem;
+    padding: 0 1rem;
+    
+    .menu-group {
+      border-radius: 0.875rem;
+    }
     
     ion-item {
+      --padding-start: 1rem;
+      --padding-end: 1rem;
+      --min-height: 54px;
+      
       ion-icon[slot="start"] {
         font-size: 1.3rem;
       }
       
       ion-label {
-        h2 {
-          font-size: 0.95rem;
-        }
-        
-        p {
-          font-size: 0.8rem;
-        }
+        font-size: 0.95rem;
       }
     }
   }
@@ -209,27 +320,96 @@
 
 // Dark Mode Support
 @media (prefers-color-scheme: dark) {
+  .profile-container {
+    background: linear-gradient(180deg, rgba(var(--ion-color-primary-rgb), 0.05) 0%, transparent 100%);
+  }
+
+  .profile-header {
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.4),
+      0 4px 12px rgba(0, 0, 0, 0.3);
+    
+    &::before,
+    &::after {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .avatar-container .profile-avatar {
+      border-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        0 0 0 8px rgba(255, 255, 255, 0.05);
+    }
+  }
+  
   .menu-list {
-    ion-item {
-      --background: rgba(255, 255, 255, 0.05);
+    .menu-group {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.4);
       
       &:hover {
-        --background: rgba(255, 255, 255, 0.08);
+        box-shadow: 
+          0 4px 12px rgba(0, 0, 0, 0.4),
+          0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+    }
+    
+    ion-item {
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      
+      &::before {
+        background: linear-gradient(90deg, 
+          rgba(var(--ion-color-primary-rgb), 0.08) 0%, 
+          transparent 100%
+        );
       }
       
       ion-label {
-        h2 {
-          color: var(--ion-color-light);
-        }
+        color: var(--ion-color-light);
       }
       
       &.logout-item {
-        --background: rgba(var(--ion-color-danger-rgb), 0.1);
+        .menu-group {
+          background: rgba(var(--ion-color-danger-rgb), 0.1);
+          border-color: rgba(var(--ion-color-danger-rgb), 0.3);
+        }
+        
+        &::before {
+          background: linear-gradient(90deg, 
+            rgba(var(--ion-color-danger-rgb), 0.12) 0%, 
+            transparent 100%
+          );
+        }
         
         &:hover {
-          --background: rgba(var(--ion-color-danger-rgb), 0.15);
+          background: rgba(var(--ion-color-danger-rgb), 0.05);
         }
       }
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Stagger animation for menu items
+.menu-list ion-item {
+  animation: fadeInUp 0.4s ease-out backwards;
+  
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.05}s;
     }
   }
 }
