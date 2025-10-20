@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonContent } from '@ionic/angular/standalone';
+
+@Component({
+  selector: 'app-feed',
+  templateUrl: './feed.page.html',
+  styleUrls: ['./feed.page.scss'],
+  standalone: true,
+  imports: [CommonModule, IonContent],
+})
+export class FeedPage {}

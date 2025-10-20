@@ -70,7 +70,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     // Check if already authenticated
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/tabs/home']);
     }
   }
 
@@ -108,7 +108,7 @@ export class LoginPage implements OnInit {
 
         if (response.success) {
           await this.presentToast('Login berhasil!', 'success');
-          this.router.navigate(['/home']);
+          this.router.navigate(['/tabs/home']);
         } else {
           await this.presentToast(response.message || 'Login gagal', 'danger');
         }

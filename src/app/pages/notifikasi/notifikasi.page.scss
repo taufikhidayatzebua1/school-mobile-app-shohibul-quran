@@ -1,0 +1,13 @@
+.page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  
+  h1 {
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--ion-color-medium);
+    margin: 0;
+  }
+}
