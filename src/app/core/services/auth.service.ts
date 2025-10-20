@@ -55,7 +55,7 @@ export class AuthService {
       tap(response => {
         if (response.success && response.data) {
           // Store token and user data
-          this.storeAuthData(response.data.token, response.data.user);
+          this.storeAuthData(response.data.access_token, response.data.user);
           this.currentUserSubject.next(response.data.user);
         }
       }),
