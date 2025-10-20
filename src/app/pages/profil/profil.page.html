@@ -1,6 +1,17 @@
-<ion-header [translucent]="true" class="profile-toolbar">
+<ion-header [translucent]="false" class="profile-toolbar ion-no-border">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Placeholder untuk balance layout -->
+      <ion-button disabled style="visibility: hidden">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Profil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openProfileMenu($event)" class="menu-button">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

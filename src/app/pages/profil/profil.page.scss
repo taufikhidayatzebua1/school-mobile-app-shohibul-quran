@@ -1,21 +1,82 @@
 // Profile Page Styles - Modern & Attractive Design
 
-// Top Toolbar - Simple, same as bottom tab bar
+// Top Toolbar - Same as bottom tab bar
 .profile-toolbar {
+  --border-width: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  
+  &::after {
+    display: none !important;
+  }
+  
   ion-toolbar {
     --background: var(--ion-background-color, #fff);
     --min-height: 48px;
+    --max-height: 48px;
     --padding-top: 0;
     --padding-bottom: 0;
-    --border-width: 0;
-    --box-shadow: none;
+    --border-width: 0 !important;
+    --box-shadow: none !important;
+    height: 48px;
+    box-shadow: none !important;
+    border: none !important;
     
     ion-title {
       font-size: 16px;
       font-weight: 600;
       padding-top: 0;
       padding-bottom: 0;
+      text-align: center;
+      color: #000000; // Pure black untuk visibility
     }
+    
+    ion-buttons {
+      ion-button {
+        --color: #000000;
+        --background: transparent;
+        --background-hover: rgba(0, 0, 0, 0.04);
+        --background-activated: rgba(0, 0, 0, 0.08);
+        --padding-start: 8px;
+        --padding-end: 8px;
+        margin: 0;
+        height: 48px;
+        
+        &.menu-button {
+          ion-icon {
+            font-size: 20px; // Same as tabs bar
+            color: #000000 !important;
+            opacity: 1 !important;
+            display: block !important;
+            visibility: visible !important;
+          }
+        }
+        
+        ion-icon {
+          font-size: 20px; // Same as tabs bar
+          color: #000000 !important;
+          opacity: 1 !important;
+          display: block;
+        }
+        
+        // Disabled state untuk placeholder (kiri)
+        &:disabled {
+          opacity: 0 !important;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
+
+// Profile Menu Popover - Custom width
+::ng-deep .profile-menu-popover {
+  --width: 120px !important;
+  --max-width: 120px !important;
+  
+  .popover-content {
+    width: 120px !important;
+    max-width: 120px !important;
   }
 }
 

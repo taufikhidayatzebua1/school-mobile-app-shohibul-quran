@@ -10,14 +10,15 @@ import {
   IonItem,
   IonList,
   IonButton,
+  IonButtons,
   IonIcon,
   IonSpinner,
-  IonChip,
   IonRefresher,
   IonRefresherContent,
   AlertController,
   ToastController,
-  ModalController
+  ModalController,
+  PopoverController
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -28,6 +29,7 @@ import { HelpCenterModalComponent } from './modals/help-center-modal.component';
 import { TermsModalComponent } from './modals/terms-modal.component';
 import { PrivacyModalComponent } from './modals/privacy-modal.component';
 import { AboutModalComponent } from './modals/about-modal.component';
+import { ProfileMenuPopoverComponent } from './components/profile-menu-popover.component';
 import { 
   personOutline, 
   mailOutline, 
@@ -46,7 +48,11 @@ import {
   helpCircleOutline,
   documentTextOutline,
   lockClosedOutline,
-  informationCircleOutline
+  informationCircleOutline,
+  ellipsisVertical,
+  ellipsisVerticalOutline,
+  createOutline,
+  settingsOutline
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
@@ -68,9 +74,9 @@ import { addIcons } from 'ionicons';
     IonButton,
     IonIcon,
     IonSpinner,
-    IonChip,
     IonRefresher,
-    IonRefresherContent
+    IonRefresherContent,
+    IonButtons
   ],
 })
 export class ProfilPage implements OnInit {
@@ -83,7 +89,8 @@ export class ProfilPage implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private toastController: ToastController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private popoverCtrl: PopoverController
   ) {
     // Register icons
     addIcons({
@@ -104,7 +111,11 @@ export class ProfilPage implements OnInit {
       helpCircleOutline,
       documentTextOutline,
       lockClosedOutline,
-      informationCircleOutline
+      informationCircleOutline,
+      ellipsisVertical,
+      ellipsisVerticalOutline,
+      createOutline,
+      settingsOutline
     });
   }
 
@@ -161,6 +172,45 @@ export class ProfilPage implements OnInit {
         this.showToast('Gagal memperbarui profil', 'danger');
       }
     });
+  }
+
+  /**
+   * Open profile menu popover
+   */
+  async openProfileMenu(event: any) {
+    const popover = await this.popoverCtrl.create({
+      component: ProfileMenuPopoverComponent,
+      event: event,
+      translucent: true,
+      showBackdrop: true,
+      dismissOnSelect: true,
+      size: 'auto',
+      cssClass: 'profile-menu-popover'
+    });
+
+    await popover.present();
+
+    const { data } = await popover.onDidDismiss();
+    
+    if (data === 'edit') {
+      this.editProfile();
+    } else if (data === 'settings') {
+      this.openSettings();
+    }
+  }
+
+  /**
+   * Edit profile (placeholder)
+   */
+  editProfile() {
+    this.showToast('Fitur Edit Profil sedang dalam pengembangan', 'warning');
+  }
+
+  /**
+   * Open settings (placeholder)
+   */
+  openSettings() {
+    this.showToast('Fitur Pengaturan sedang dalam pengembangan', 'warning');
   }
 
   /**
