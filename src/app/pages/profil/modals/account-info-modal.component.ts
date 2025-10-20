@@ -14,7 +14,19 @@ import {
   ModalController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { close, personOutline, mailOutline, cardOutline, shieldCheckmarkOutline } from 'ionicons/icons';
+import { 
+  close, 
+  personOutline, 
+  mailOutline, 
+  cardOutline, 
+  shieldCheckmarkOutline,
+  schoolOutline,
+  calendarOutline,
+  locationOutline,
+  callOutline,
+  briefcaseOutline,
+  cashOutline
+} from 'ionicons/icons';
 import { UserProfile } from '../../../core/models/user.model';
 
 @Component({
@@ -40,7 +52,19 @@ export class AccountInfoModalComponent {
   @Input() profile!: UserProfile;
 
   constructor(private modalCtrl: ModalController) {
-    addIcons({ close, personOutline, mailOutline, cardOutline, shieldCheckmarkOutline });
+    addIcons({ 
+      close, 
+      personOutline, 
+      mailOutline, 
+      cardOutline, 
+      shieldCheckmarkOutline,
+      schoolOutline,
+      calendarOutline,
+      locationOutline,
+      callOutline,
+      briefcaseOutline,
+      cashOutline
+    });
   }
 
   dismiss() {

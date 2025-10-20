@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Informasi Akun</ion-title>
+    <ion-title>Informasi Profil</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <ion-icon name="close" slot="icon-only"></ion-icon>
@@ -11,58 +11,325 @@
 
 <ion-content class="ion-padding">
   <div class="modal-content">
-    <ion-list lines="none" class="info-list">
-      <ion-item>
-        <ion-icon name="person-outline" slot="start" color="primary"></ion-icon>
-        <ion-label>
-          <p class="label-text">Nama Lengkap</p>
-          <h3>{{ profile.name }}</h3>
-        </ion-label>
-      </ion-item>
+    <!-- Account Information Section -->
+    <div class="section">
+      <h2 class="section-title">Informasi Akun</h2>
+      <ion-list lines="none" class="info-list">
+        <ion-item>
+          <ion-icon
+            name="person-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Nama Lengkap</p>
+            <h3>{{ profile.name }}</h3>
+          </ion-label>
+        </ion-item>
 
-      <ion-item>
-        <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
-        <ion-label>
-          <p class="label-text">Email</p>
-          <h3>{{ profile.email }}</h3>
-        </ion-label>
-      </ion-item>
+        <ion-item>
+          <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <p class="label-text">Email</p>
+            <h3>{{ profile.email }}</h3>
+          </ion-label>
+        </ion-item>
 
-      <ion-item>
-        <ion-icon name="person-outline" slot="start" color="primary"></ion-icon>
-        <ion-label>
-          <p class="label-text">Username</p>
-          <h3>{{ profile.username }}</h3>
-        </ion-label>
-      </ion-item>
+        <ion-item>
+          <ion-icon
+            name="person-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Username</p>
+            <h3>{{ profile.username }}</h3>
+          </ion-label>
+        </ion-item>
 
-      <ion-item>
-        <ion-icon name="card-outline" slot="start" color="primary"></ion-icon>
-        <ion-label>
-          <p class="label-text">Role</p>
-          <h3>{{ getRoleText() }}</h3>
-        </ion-label>
-      </ion-item>
+        <ion-item>
+          <ion-icon name="card-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <p class="label-text">Role</p>
+            <h3>{{ getRoleText() }}</h3>
+          </ion-label>
+        </ion-item>
 
-      <ion-item>
-        <ion-icon
-          name="shield-checkmark-outline"
-          slot="start"
-          color="primary"
-        ></ion-icon>
-        <ion-label>
-          <p class="label-text">Status Akun</p>
-          <h3>{{ profile.is_active ? "Aktif" : "Tidak Aktif" }}</h3>
-        </ion-label>
-      </ion-item>
+        <ion-item>
+          <ion-icon
+            name="shield-checkmark-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Status Akun</p>
+            <h3>{{ profile.is_active ? "Aktif" : "Tidak Aktif" }}</h3>
+          </ion-label>
+        </ion-item>
 
-      <ion-item>
-        <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
-        <ion-label>
-          <p class="label-text">Email Terverifikasi</p>
-          <h3>{{ formatDate(profile.email_verified_at) }}</h3>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+        <ion-item>
+          <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <p class="label-text">Email Terverifikasi</p>
+            <h3>{{ formatDate(profile.email_verified_at) }}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Siswa Specific Information -->
+    <div class="section" *ngIf="profile.role === 'siswa' && profile.siswa">
+      <h2 class="section-title">Data Siswa</h2>
+      <ion-list lines="none" class="info-list">
+        <ion-item *ngIf="profile.siswa.nis">
+          <ion-icon name="card-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <p class="label-text">NIS</p>
+            <h3>{{ profile.siswa.nis }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.siswa.kelas">
+          <ion-icon
+            name="school-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Kelas</p>
+            <h3>
+              {{ profile.siswa.kelas.nama }}
+              <span *ngIf="profile.siswa.kelas.ruangan"
+                >- {{ profile.siswa.kelas.ruangan }}</span
+              >
+            </h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.siswa.jenis_kelamin_text">
+          <ion-icon
+            name="person-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Jenis Kelamin</p>
+            <h3>{{ profile.siswa.jenis_kelamin_text }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item
+          *ngIf="profile.siswa.tempat_lahir || profile.siswa.tanggal_lahir"
+        >
+          <ion-icon
+            name="calendar-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Tempat, Tanggal Lahir</p>
+            <h3>
+              {{ profile.siswa.tempat_lahir || "-" }},
+              {{ formatDate(profile.siswa.tanggal_lahir) }}
+            </h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.siswa.alamat">
+          <ion-icon
+            name="location-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Alamat</p>
+            <h3>{{ profile.siswa.alamat }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.siswa.no_hp">
+          <ion-icon name="call-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <p class="label-text">No. HP</p>
+            <h3>{{ profile.siswa.no_hp }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.siswa.tahun_masuk">
+          <ion-icon
+            name="calendar-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Tahun Masuk</p>
+            <h3>{{ profile.siswa.tahun_masuk }}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Guru Specific Information -->
+    <div
+      class="section"
+      *ngIf="
+        (profile.role === 'guru' ||
+          profile.role === 'wali-kelas' ||
+          profile.role === 'kepala-sekolah') &&
+        profile.guru
+      "
+    >
+      <h2 class="section-title">Data {{ getRoleText() }}</h2>
+      <ion-list lines="none" class="info-list">
+        <ion-item *ngIf="profile.guru.nip">
+          <ion-icon name="card-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <p class="label-text">NIP</p>
+            <h3>{{ profile.guru.nip }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.guru.jenis_kelamin_text">
+          <ion-icon
+            name="person-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Jenis Kelamin</p>
+            <h3>{{ profile.guru.jenis_kelamin_text }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item
+          *ngIf="profile.guru.tempat_lahir || profile.guru.tanggal_lahir"
+        >
+          <ion-icon
+            name="calendar-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Tempat, Tanggal Lahir</p>
+            <h3>
+              {{ profile.guru.tempat_lahir || "-" }},
+              {{ formatDate(profile.guru.tanggal_lahir) }}
+            </h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.guru.alamat">
+          <ion-icon
+            name="location-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Alamat</p>
+            <h3>{{ profile.guru.alamat }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.guru.no_hp">
+          <ion-icon name="call-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <p class="label-text">No. HP</p>
+            <h3>{{ profile.guru.no_hp }}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Orang Tua Specific Information -->
+    <div
+      class="section"
+      *ngIf="profile.role === 'orang-tua' && profile.orang_tua"
+    >
+      <h2 class="section-title">Data Orang Tua</h2>
+      <ion-list lines="none" class="info-list">
+        <ion-item *ngIf="profile.orang_tua.jenis_kelamin_text">
+          <ion-icon
+            name="person-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Jenis Kelamin</p>
+            <h3>{{ profile.orang_tua.jenis_kelamin_text }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item
+          *ngIf="
+            profile.orang_tua.tempat_lahir || profile.orang_tua.tanggal_lahir
+          "
+        >
+          <ion-icon
+            name="calendar-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Tempat, Tanggal Lahir</p>
+            <h3>
+              {{ profile.orang_tua.tempat_lahir || "-" }},
+              {{ formatDate(profile.orang_tua.tanggal_lahir) }}
+            </h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.orang_tua.alamat">
+          <ion-icon
+            name="location-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Alamat</p>
+            <h3>{{ profile.orang_tua.alamat }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.orang_tua.no_hp">
+          <ion-icon name="call-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <p class="label-text">No. HP</p>
+            <h3>{{ profile.orang_tua.no_hp }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.orang_tua.pendidikan">
+          <ion-icon
+            name="school-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Pendidikan</p>
+            <h3>{{ profile.orang_tua.pendidikan }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.orang_tua.pekerjaan">
+          <ion-icon
+            name="briefcase-outline"
+            slot="start"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            <p class="label-text">Pekerjaan</p>
+            <h3>{{ profile.orang_tua.pekerjaan }}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="profile.orang_tua.penghasilan_formatted">
+          <ion-icon name="cash-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <p class="label-text">Penghasilan</p>
+            <h3>{{ profile.orang_tua.penghasilan_formatted }}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
   </div>
 </ion-content>
