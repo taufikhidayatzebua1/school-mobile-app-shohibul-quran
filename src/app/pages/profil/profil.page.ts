@@ -18,7 +18,8 @@ import {
   AlertController,
   ToastController,
   ModalController,
-  PopoverController
+  PopoverController,
+  AnimationController
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -84,13 +85,42 @@ export class ProfilPage implements OnInit {
   isLoading = true;
   error: string | null = null;
 
+  // Slide animations for modal
+  slideFromRight = (baseEl: HTMLElement) => {
+    const root = baseEl.shadowRoot!;
+    const backdropAnimation = this.animationCtrl
+      .create()
+      .addElement(root.querySelector('ion-backdrop')!)
+      .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+    const wrapperAnimation = this.animationCtrl
+      .create()
+      .addElement(root.querySelector('.modal-wrapper')!)
+      .keyframes([
+        { offset: 0, opacity: '0', transform: 'translateX(100%)' },
+        { offset: 1, opacity: '1', transform: 'translateX(0)' }
+      ]);
+
+    return this.animationCtrl
+      .create()
+      .addElement(baseEl)
+      .easing('ease-out')
+      .duration(300)
+      .addAnimation([backdropAnimation, wrapperAnimation]);
+  };
+
+  slideToRight = (baseEl: HTMLElement) => {
+    return this.slideFromRight(baseEl).direction('reverse');
+  };
+
   constructor(
     private authService: AuthService,
     private router: Router,
     private alertController: AlertController,
     private toastController: ToastController,
     private modalCtrl: ModalController,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private animationCtrl: AnimationController
   ) {
     // Register icons
     addIcons({
@@ -345,7 +375,10 @@ export class ProfilPage implements OnInit {
       componentProps: {
         profile: this.profile
       },
-      presentingElement: await this.modalCtrl.getTop()
+      presentingElement: await this.modalCtrl.getTop(),
+      cssClass: 'slide-modal',
+      enterAnimation: this.slideFromRight,
+      leaveAnimation: this.slideToRight
     });
 
     await modal.present();
@@ -357,7 +390,10 @@ export class ProfilPage implements OnInit {
   async openSecurity() {
     const modal = await this.modalCtrl.create({
       component: SecurityModalComponent,
-      presentingElement: await this.modalCtrl.getTop()
+      presentingElement: await this.modalCtrl.getTop(),
+      cssClass: 'slide-modal',
+      enterAnimation: this.slideFromRight,
+      leaveAnimation: this.slideToRight
     });
 
     await modal.present();
@@ -369,7 +405,10 @@ export class ProfilPage implements OnInit {
   async openHelpCenter() {
     const modal = await this.modalCtrl.create({
       component: HelpCenterModalComponent,
-      presentingElement: await this.modalCtrl.getTop()
+      presentingElement: await this.modalCtrl.getTop(),
+      cssClass: 'slide-modal',
+      enterAnimation: this.slideFromRight,
+      leaveAnimation: this.slideToRight
     });
 
     await modal.present();
@@ -381,7 +420,10 @@ export class ProfilPage implements OnInit {
   async openTerms() {
     const modal = await this.modalCtrl.create({
       component: TermsModalComponent,
-      presentingElement: await this.modalCtrl.getTop()
+      presentingElement: await this.modalCtrl.getTop(),
+      cssClass: 'slide-modal',
+      enterAnimation: this.slideFromRight,
+      leaveAnimation: this.slideToRight
     });
 
     await modal.present();
@@ -393,7 +435,10 @@ export class ProfilPage implements OnInit {
   async openPrivacy() {
     const modal = await this.modalCtrl.create({
       component: PrivacyModalComponent,
-      presentingElement: await this.modalCtrl.getTop()
+      presentingElement: await this.modalCtrl.getTop(),
+      cssClass: 'slide-modal',
+      enterAnimation: this.slideFromRight,
+      leaveAnimation: this.slideToRight
     });
 
     await modal.present();
@@ -405,7 +450,10 @@ export class ProfilPage implements OnInit {
   async openAbout() {
     const modal = await this.modalCtrl.create({
       component: AboutModalComponent,
-      presentingElement: await this.modalCtrl.getTop()
+      presentingElement: await this.modalCtrl.getTop(),
+      cssClass: 'slide-modal',
+      enterAnimation: this.slideFromRight,
+      leaveAnimation: this.slideToRight
     });
 
     await modal.present();
