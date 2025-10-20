@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost/sq-backend/public/api/v1', // Update sesuai dengan URL backend Anda
+  apiVersion: 'v1'
 };
 
 /*

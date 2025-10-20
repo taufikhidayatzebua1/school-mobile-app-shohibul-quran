@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://your-production-domain.com/api/v1', // Update dengan URL production Anda
+  apiVersion: 'v1'
 };

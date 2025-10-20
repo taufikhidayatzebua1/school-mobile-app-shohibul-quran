@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <!-- Logo or App Name -->
+    <div class="logo-container">
+      <h1>SQ Mobile</h1>
+      <p>Sistem Pembelajaran Al-Quran</p>
+    </div>
+
+    <!-- Login Card -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Masuk ke Akun Anda</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form (ngSubmit)="onLogin()">
+          <!-- Username Input -->
+          <ion-item lines="full">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-input
+              label="Username"
+              labelPlacement="floating"
+              type="text"
+              [(ngModel)]="credentials.username"
+              name="username"
+              placeholder="Masukkan username"
+              [disabled]="isLoading"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <!-- Password Input -->
+          <ion-item lines="full">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-input
+              label="Password"
+              labelPlacement="floating"
+              [type]="showPassword ? 'text' : 'password'"
+              [(ngModel)]="credentials.password"
+              name="password"
+              placeholder="Masukkan password"
+              [disabled]="isLoading"
+              required
+            ></ion-input>
+            <ion-icon
+              [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+              slot="end"
+              (click)="togglePasswordVisibility()"
+              style="cursor: pointer"
+            ></ion-icon>
+          </ion-item>
+
+          <!-- Forgot Password Link -->
+          <div class="forgot-password">
+            <ion-text color="primary">
+              <small (click)="onForgotPassword()" style="cursor: pointer">
+                Lupa Password?
+              </small>
+            </ion-text>
+          </div>
+
+          <!-- Login Button -->
+          <ion-button
+            expand="block"
+            type="submit"
+            [disabled]="isLoading || !credentials.username || !credentials.password"
+            class="ion-margin-top"
+          >
+            <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+            <span *ngIf="!isLoading">Masuk</span>
+          </ion-button>
+        </form>
+
+        <!-- Additional Info -->
+        <div class="additional-info ion-margin-top">
+          <ion-text color="medium">
+            <p class="ion-text-center">
+              <small>
+                Belum punya akun? Hubungi administrator sekolah untuk mendaftar.
+              </small>
+            </p>
+          </ion-text>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

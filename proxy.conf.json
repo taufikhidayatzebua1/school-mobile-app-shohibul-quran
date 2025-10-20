@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://localhost/sq-backend/public",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
