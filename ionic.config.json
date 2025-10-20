@@ -1,0 +1,7 @@
+{
+  "name": "sq-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
