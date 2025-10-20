@@ -8,10 +8,44 @@ ion-tab-bar {
   ion-tab-button {
     --color: var(--ion-color-medium);
     --color-selected: var(--ion-color-primary);
+    position: relative;
     
     ion-icon {
       font-size: 28px;
       margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease-in-out;
     }
+
+    // Default state: show outline, hide fill
+    .icon-outline {
+      opacity: 1;
+    }
+
+    .icon-fill {
+      opacity: 0;
+    }
+
+    // Selected state: hide outline, show fill
+    &.tab-selected {
+      .icon-outline {
+        opacity: 0;
+      }
+
+      .icon-fill {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  ion-tab-bar {
+    --background: var(--ion-background-color, #1a1a1a);
+    border-top-color: var(--ion-color-dark-shade);
   }
 }
