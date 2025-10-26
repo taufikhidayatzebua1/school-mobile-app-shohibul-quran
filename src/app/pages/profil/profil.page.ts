@@ -24,12 +24,12 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { UserProfile } from '../../core/models/user.model';
-import { AccountInfoModalComponent } from './modals/account-info-modal.component';
-import { SecurityModalComponent } from './modals/security-modal.component';
-import { HelpCenterModalComponent } from './modals/help-center-modal.component';
-import { TermsModalComponent } from './modals/terms-modal.component';
-import { PrivacyModalComponent } from './modals/privacy-modal.component';
-import { AboutModalComponent } from './modals/about-modal.component';
+import { AccountInfoModalComponent } from './modals/account-info/account-info-modal.component';
+import { SecurityModalComponent } from './modals/security/security-modal.component';
+import { HelpCenterModalComponent } from './modals/help-center/help-center-modal.component';
+import { TermsModalComponent } from './modals/terms/terms-modal.component';
+import { PrivacyModalComponent } from './modals/privacy/privacy-modal.component';
+import { AboutModalComponent } from './modals/about/about-modal.component';
 import { ProfileMenuPopoverComponent } from './components/profile-menu-popover.component';
 import { 
   personOutline, 
