@@ -1,15 +1,21 @@
-<ion-header>
+<ion-header [translucent]="false" class="modal-toolbar ion-no-border">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Keamanan Akun</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
-        <ion-icon name="close" slot="icon-only"></ion-icon>
+      <!-- Placeholder untuk balance layout -->
+      <ion-button disabled style="visibility: hidden">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   <div class="modal-content">
     <h2 class="section-title">Ganti Password</h2>
     <p class="section-description">
@@ -22,7 +28,6 @@
         <ion-icon
           name="lock-closed-outline"
           slot="start"
-          color="primary"
         ></ion-icon>
         <ion-input
           label="Password Saat Ini"
@@ -45,9 +50,8 @@
 
       <ion-item>
         <ion-icon
-          name="lock-closed-outline"
+          name="key-outline"
           slot="start"
-          color="primary"
         ></ion-icon>
         <ion-input
           label="Password Baru"
@@ -70,9 +74,8 @@
 
       <ion-item>
         <ion-icon
-          name="lock-closed-outline"
+          name="shield-checkmark-outline"
           slot="start"
-          color="primary"
         ></ion-icon>
         <ion-input
           label="Konfirmasi Password Baru"

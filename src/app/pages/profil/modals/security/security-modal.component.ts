@@ -16,7 +16,15 @@ import {
   ToastController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { close, lockClosedOutline, eyeOutline, eyeOffOutline } from 'ionicons/icons';
+import { 
+  close, 
+  chevronBackOutline,
+  lockClosedOutline, 
+  keyOutline,
+  shieldCheckmarkOutline,
+  eyeOutline, 
+  eyeOffOutline 
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-security-modal',
@@ -50,7 +58,15 @@ export class SecurityModalComponent {
     private modalCtrl: ModalController,
     private toastController: ToastController
   ) {
-    addIcons({ close, lockClosedOutline, eyeOutline, eyeOffOutline });
+    addIcons({
+      close,
+      chevronBackOutline,
+      lockClosedOutline,
+      keyOutline,
+      shieldCheckmarkOutline,
+      eyeOutline,
+      eyeOffOutline
+    });
   }
 
   dismiss() {
