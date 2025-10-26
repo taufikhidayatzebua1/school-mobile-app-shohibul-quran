@@ -2,7 +2,7 @@ ion-tab-bar {
   --background: var(--ion-background-color, #fff);
   border-top: 0.5px solid rgba(0, 0, 0, 0.1);
   padding-bottom: env(safe-area-inset-bottom);
-  height: 48px; // Reduced from 50px to match toolbar
+  height: 48px;
 
   ion-tab-button {
     --color: #000000;
