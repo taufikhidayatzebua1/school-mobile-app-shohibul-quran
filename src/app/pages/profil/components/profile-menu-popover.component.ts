@@ -13,7 +13,7 @@ import { createOutline, settingsOutline } from 'ionicons/icons';
 @Component({
   selector: 'app-profile-menu-popover',
   template: `
-    <ion-list class="profile-menu-list">
+    <ion-list class="profile-menu-list" lines="none">
       <ion-item button (click)="selectOption('edit')" detail="false">
         <ion-icon slot="start" name="create-outline"></ion-icon>
         <ion-label>Edit Profil</ion-label>
@@ -25,30 +25,26 @@ import { createOutline, settingsOutline } from 'ionicons/icons';
     </ion-list>
   `,
   styles: [`
-    :host {
-      --width: 120px;
-    }
-    
     .profile-menu-list {
       padding: 0;
       margin: 0;
-      min-width: 120px;
-      max-width: 120px;
-      width: 120px;
       
       ion-item {
-        --padding-start: 8px;
-        --padding-end: 8px;
-        --min-height: 36px;
-        font-size: 11px;
+        --padding-start: 16px;
+        --padding-end: 16px;
+        --min-height: 52px;
+        --border-width: 0;
+        --inner-border-width: 0;
+        font-size: 16px;
+        border: none;
         
         ion-icon {
-          font-size: 16px;
-          margin-right: 6px;
+          font-size: 24px;
+          margin-right: 14px;
         }
         
         ion-label {
-          font-size: 11px;
+          font-size: 16px;
           margin: 0;
           white-space: nowrap;
         }
