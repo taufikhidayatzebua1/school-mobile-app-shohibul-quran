@@ -186,7 +186,7 @@
   }
   
   .profile-name {
-    font-size: 15px;
+    font-size: 24px;
     font-weight: 600;
     color: var(--ion-color-dark);
     margin: 0;
@@ -194,7 +194,7 @@
   }
   
   .profile-role {
-    font-size: 11px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--ion-color-primary);
     margin: 0;
@@ -209,11 +209,11 @@
   padding: 0 14px;
   
   .section-header {
-    margin: 8px 0 11px;
+    margin: 20px 0 20px;
     padding-left: 6px;
     
     h3 {
-      font-size: 10px;
+      font-size: 15px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.4px;
@@ -232,6 +232,10 @@
       0 2px 8px rgba(0, 0, 0, 0.04),
       0 1px 2px rgba(0, 0, 0, 0.06);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 0;
   }
   
   ion-item {
@@ -243,7 +247,7 @@
     cursor: pointer;
     --min-height: 44px;
     position: relative;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: none;
     
     // Remove border for last item in group
     &.group-item-last,
@@ -256,18 +260,19 @@
     }
     
     ion-icon[slot="start"] {
-      font-size: 15px;
+      font-size: 24px !important;
       margin-right: 10px;
+      color: #000000 !important;
     }
     
     ion-icon[slot="end"] {
-      font-size: 14px;
+      font-size: 20px;
       opacity: 0.4;
     }
     
     ion-label {
-      font-size: 12px;
-      font-weight: 500;
+      font-size: 18px;
+      font-weight: 400;
       color: var(--ion-color-dark);
       
       &[color="danger"] {
@@ -304,11 +309,11 @@
     }
     
     .profile-name {
-      font-size: 15px;
+      font-size: 24px;
     }
     
     .profile-role {
-      font-size: 11px;
+      font-size: 15px;
     }
   }
   
@@ -319,11 +324,12 @@
       --min-height: 44px;
       
       ion-icon[slot="start"] {
-        font-size: 15px;
+        font-size: 24px !important;
+        color: #000000 !important;
       }
       
       ion-label {
-        font-size: 12px;
+        font-size: 18px;
       }
     }
   }
