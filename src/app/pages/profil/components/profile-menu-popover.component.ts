@@ -26,27 +26,34 @@ import { createOutline, settingsOutline } from 'ionicons/icons';
   `,
   styles: [`
     .profile-menu-list {
-      padding: 0;
+      padding: 4px 0;
       margin: 0;
+      min-width: auto !important;
+      width: fit-content !important;
       
       ion-item {
-        --padding-start: 16px;
-        --padding-end: 16px;
-        --min-height: 52px;
+        --padding-start: 12px;
+        --padding-end: 12px;
+        --min-height: 44px;
         --border-width: 0;
         --inner-border-width: 0;
-        font-size: 16px;
+        --min-width: auto !important;
+        font-size: 15px;
         border: none;
+        width: fit-content !important;
+        min-width: auto !important;
         
         ion-icon {
-          font-size: 24px;
-          margin-right: 14px;
+          font-size: 20px;
+          margin-right: 10px;
+          flex-shrink: 0;
         }
         
         ion-label {
-          font-size: 16px;
+          font-size: 15px;
           margin: 0;
           white-space: nowrap;
+          flex-shrink: 1;
         }
       }
     }

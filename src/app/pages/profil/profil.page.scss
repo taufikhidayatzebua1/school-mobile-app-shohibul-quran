@@ -71,12 +71,25 @@
 
 // Profile Menu Popover - Custom width
 ::ng-deep .profile-menu-popover {
-  --width: auto !important;
-  --max-width: none !important;
+  --width: fit-content !important;
+  --max-width: fit-content !important;
+  --min-width: auto !important;
   
   .popover-content {
-    width: auto !important;
-    max-width: none !important;
+    width: fit-content !important;
+    max-width: fit-content !important;
+    min-width: auto !important;
+    padding: 0 !important;
+  }
+  
+  .popover-wrapper {
+    padding: 0 !important;
+    width: fit-content !important;
+  }
+  
+  ion-list {
+    width: fit-content !important;
+    min-width: auto !important;
   }
 }
 
