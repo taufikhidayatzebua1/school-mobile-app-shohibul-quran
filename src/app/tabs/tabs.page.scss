@@ -5,12 +5,12 @@ ion-tab-bar {
   height: 48px; // Reduced from 50px to match toolbar
 
   ion-tab-button {
-    --color: var(--ion-color-medium);
+    --color: #000000;
     --color-selected: var(--ion-color-primary);
     position: relative;
     
     ion-icon {
-      font-size: 20px; // Reduced from 24px
+      font-size: 26px; // Increased for better visibility
       margin: 0;
       position: absolute;
       top: 50%;
