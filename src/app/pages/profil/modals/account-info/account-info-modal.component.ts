@@ -27,7 +27,7 @@ import {
   briefcaseOutline,
   cashOutline
 } from 'ionicons/icons';
-import { UserProfile } from '../../../core/models/user.model';
+import { UserProfile } from '../../../../core/models/user.model';
 
 @Component({
   selector: 'app-account-info-modal',
