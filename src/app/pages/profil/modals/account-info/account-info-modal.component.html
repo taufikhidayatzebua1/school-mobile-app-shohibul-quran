@@ -1,15 +1,15 @@
 <ion-header [translucent]="false" class="modal-toolbar ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <!-- Placeholder untuk balance layout -->
-      <ion-button disabled style="visibility: hidden">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>Informasi Profil</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
-        <ion-icon name="close" slot="icon-only"></ion-icon>
+      <!-- Placeholder untuk balance layout -->
+      <ion-button disabled style="visibility: hidden">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -22,11 +22,7 @@
       <h2 class="section-title">Informasi Akun</h2>
       <ion-list lines="none" class="info-list">
         <ion-item>
-          <ion-icon
-            name="person-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Nama Lengkap</p>
             <h3>{{ profile.name }}</h3>
@@ -42,11 +38,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-icon
-            name="person-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Username</p>
             <h3>{{ profile.username }}</h3>
@@ -54,11 +46,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-icon
-            name="shield-checkmark-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="shield-checkmark-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Status Akun</p>
             <h3>{{ profile.is_active ? "Aktif" : "Tidak Aktif" }}</h3>
@@ -88,11 +76,7 @@
         </ion-item>
 
         <ion-item *ngIf="profile.siswa.kelas">
-          <ion-icon
-            name="school-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="school-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Kelas</p>
             <h3>
@@ -105,11 +89,7 @@
         </ion-item>
 
         <ion-item *ngIf="profile.siswa.jenis_kelamin_text">
-          <ion-icon
-            name="person-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Jenis Kelamin</p>
             <h3>{{ profile.siswa.jenis_kelamin_text }}</h3>
@@ -119,11 +99,7 @@
         <ion-item
           *ngIf="profile.siswa.tempat_lahir || profile.siswa.tanggal_lahir"
         >
-          <ion-icon
-            name="calendar-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Tempat, Tanggal Lahir</p>
             <h3>
@@ -134,11 +110,7 @@
         </ion-item>
 
         <ion-item *ngIf="profile.siswa.alamat">
-          <ion-icon
-            name="location-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="location-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Alamat</p>
             <h3>{{ profile.siswa.alamat }}</h3>
@@ -154,11 +126,7 @@
         </ion-item>
 
         <ion-item *ngIf="profile.siswa.tahun_masuk">
-          <ion-icon
-            name="calendar-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Tahun Masuk</p>
             <h3>{{ profile.siswa.tahun_masuk }}</h3>
@@ -188,11 +156,7 @@
         </ion-item>
 
         <ion-item *ngIf="profile.guru.jenis_kelamin_text">
-          <ion-icon
-            name="person-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Jenis Kelamin</p>
             <h3>{{ profile.guru.jenis_kelamin_text }}</h3>
@@ -202,11 +166,7 @@
         <ion-item
           *ngIf="profile.guru.tempat_lahir || profile.guru.tanggal_lahir"
         >
-          <ion-icon
-            name="calendar-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Tempat, Tanggal Lahir</p>
             <h3>
@@ -217,11 +177,7 @@
         </ion-item>
 
         <ion-item *ngIf="profile.guru.alamat">
-          <ion-icon
-            name="location-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="location-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Alamat</p>
             <h3>{{ profile.guru.alamat }}</h3>
@@ -246,11 +202,7 @@
       <h2 class="section-title">Data Orang Tua</h2>
       <ion-list lines="none" class="info-list">
         <ion-item *ngIf="profile.orang_tua.jenis_kelamin_text">
-          <ion-icon
-            name="person-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Jenis Kelamin</p>
             <h3>{{ profile.orang_tua.jenis_kelamin_text }}</h3>
@@ -262,11 +214,7 @@
             profile.orang_tua.tempat_lahir || profile.orang_tua.tanggal_lahir
           "
         >
-          <ion-icon
-            name="calendar-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Tempat, Tanggal Lahir</p>
             <h3>
@@ -277,11 +225,7 @@
         </ion-item>
 
         <ion-item *ngIf="profile.orang_tua.alamat">
-          <ion-icon
-            name="location-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="location-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Alamat</p>
             <h3>{{ profile.orang_tua.alamat }}</h3>
@@ -297,11 +241,7 @@
         </ion-item>
 
         <ion-item *ngIf="profile.orang_tua.pendidikan">
-          <ion-icon
-            name="school-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="school-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Pendidikan</p>
             <h3>{{ profile.orang_tua.pendidikan }}</h3>
@@ -309,11 +249,7 @@
         </ion-item>
 
         <ion-item *ngIf="profile.orang_tua.pekerjaan">
-          <ion-icon
-            name="briefcase-outline"
-            slot="start"
-           
-          ></ion-icon>
+          <ion-icon name="briefcase-outline" slot="start"></ion-icon>
           <ion-label>
             <p class="label-text">Pekerjaan</p>
             <h3>{{ profile.orang_tua.pekerjaan }}</h3>

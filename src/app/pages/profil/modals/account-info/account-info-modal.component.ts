@@ -15,7 +15,8 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { 
-  close, 
+  close,
+  chevronBackOutline,
   personOutline, 
   mailOutline, 
   cardOutline, 
@@ -53,7 +54,8 @@ export class AccountInfoModalComponent {
 
   constructor(private modalCtrl: ModalController) {
     addIcons({ 
-      close, 
+      close,
+      chevronBackOutline,
       personOutline, 
       mailOutline, 
       cardOutline, 
