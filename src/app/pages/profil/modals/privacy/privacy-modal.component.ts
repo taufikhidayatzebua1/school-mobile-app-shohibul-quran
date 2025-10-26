@@ -11,7 +11,7 @@ import {
   ModalController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { close } from 'ionicons/icons';
+import { close, chevronBackOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-privacy-modal',
@@ -31,7 +31,10 @@ import { close } from 'ionicons/icons';
 })
 export class PrivacyModalComponent {
   constructor(private modalCtrl: ModalController) {
-    addIcons({ close });
+    addIcons({ 
+      close, 
+      chevronBackOutline 
+    });
   }
 
   dismiss() {

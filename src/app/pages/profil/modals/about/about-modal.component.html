@@ -1,18 +1,24 @@
-<ion-header>
+<ion-header [translucent]="false" class="modal-toolbar ion-no-border">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Tentang Aplikasi</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
-        <ion-icon name="close" slot="icon-only"></ion-icon>
+      <!-- Placeholder untuk balance layout -->
+      <ion-button disabled style="visibility: hidden">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   <div class="modal-content">
     <div class="app-logo">
-      <ion-icon name="information-circle-outline" color="primary"></ion-icon>
+      <ion-icon name="information-circle-outline"></ion-icon>
     </div>
 
     <h1 class="app-name">{{ appInfo.name }}</h1>
@@ -20,11 +26,7 @@
 
     <ion-list lines="none" class="info-list">
       <ion-item>
-        <ion-icon
-          name="code-slash-outline"
-          slot="start"
-          color="primary"
-        ></ion-icon>
+        <ion-icon name="code-slash-outline" slot="start"></ion-icon>
         <ion-label>
           <p>Versi</p>
           <h3>{{ appInfo.version }}</h3>
@@ -32,7 +34,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-icon name="build-outline" slot="start" color="primary"></ion-icon>
+        <ion-icon name="build-outline" slot="start"></ion-icon>
         <ion-label>
           <p>Build Number</p>
           <h3>{{ appInfo.buildNumber }}</h3>
@@ -40,11 +42,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-icon
-          name="information-circle-outline"
-          slot="start"
-          color="primary"
-        ></ion-icon>
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
         <ion-label>
           <p>Tanggal Rilis</p>
           <h3>{{ appInfo.releaseDate }}</h3>

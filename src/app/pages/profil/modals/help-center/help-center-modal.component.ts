@@ -16,7 +16,14 @@ import {
   ModalController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { close, helpCircleOutline, chatbubbleOutline, mailOutline, callOutline } from 'ionicons/icons';
+import { 
+  close, 
+  chevronBackOutline,
+  helpCircleOutline, 
+  mailOutline, 
+  callOutline,
+  timeOutline
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-help-center-modal',
@@ -64,7 +71,14 @@ export class HelpCenterModalComponent {
   ];
 
   constructor(private modalCtrl: ModalController) {
-    addIcons({ close, helpCircleOutline, chatbubbleOutline, mailOutline, callOutline });
+    addIcons({
+      close,
+      chevronBackOutline,
+      helpCircleOutline,
+      mailOutline,
+      callOutline,
+      timeOutline
+    });
   }
 
   dismiss() {

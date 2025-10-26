@@ -18,13 +18,18 @@ import {
   close,
   chevronBackOutline,
   personOutline, 
-  mailOutline, 
+  mailOutline,
+  atOutline,
   cardOutline, 
   shieldCheckmarkOutline,
+  checkmarkCircleOutline,
   schoolOutline,
   calendarOutline,
+  maleFemaleOutline,
+  giftOutline,
   locationOutline,
   callOutline,
+  calendarNumberOutline,
   briefcaseOutline,
   cashOutline
 } from 'ionicons/icons';
@@ -53,17 +58,22 @@ export class AccountInfoModalComponent {
   @Input() profile!: UserProfile;
 
   constructor(private modalCtrl: ModalController) {
-    addIcons({ 
+    addIcons({
       close,
       chevronBackOutline,
-      personOutline, 
-      mailOutline, 
-      cardOutline, 
+      personOutline,
+      mailOutline,
+      atOutline,
+      cardOutline,
       shieldCheckmarkOutline,
+      checkmarkCircleOutline,
       schoolOutline,
       calendarOutline,
+      maleFemaleOutline,
+      giftOutline,
       locationOutline,
       callOutline,
+      calendarNumberOutline,
       briefcaseOutline,
       cashOutline
     });

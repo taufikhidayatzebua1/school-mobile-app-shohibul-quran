@@ -1,42 +1,117 @@
+// Help Center Modal - Consistent with Profile Page
+
+// Modal Header - Same as other modals
+.modal-toolbar {
+  --border-width: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  
+  &::after {
+    display: none !important;
+  }
+  
+  ion-toolbar {
+    --background: var(--ion-background-color, #fff);
+    --min-height: 48px;
+    --max-height: 48px;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --border-width: 0 !important;
+    --box-shadow: none !important;
+    height: 48px;
+    box-shadow: none !important;
+    border: none !important;
+    
+    ion-title {
+      font-size: 18px;
+      font-weight: 600;
+      padding-top: 0;
+      padding-bottom: 0;
+      text-align: center;
+      color: #000000;
+    }
+    
+    ion-buttons {
+      ion-button {
+        --color: #000000;
+        --background: transparent;
+        --background-hover: rgba(0, 0, 0, 0.04);
+        --background-activated: rgba(0, 0, 0, 0.08);
+        --padding-start: 8px;
+        --padding-end: 8px;
+        margin: 0;
+        height: 48px;
+        
+        ion-icon {
+          font-size: 20px;
+          color: #000000 !important;
+          opacity: 1 !important;
+          display: block;
+        }
+        
+        // Disabled state untuk placeholder (kanan)
+        &:disabled {
+          opacity: 0 !important;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
+
+// Content padding
+ion-content {
+  --padding-top: 0;
+  --padding-bottom: 12px;
+}
+
 .modal-content {
   max-width: 600px;
   margin: 0 auto;
+  padding: 0 14px;
 }
 
 .section-title {
-  font-size: 1.25rem;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--ion-color-dark);
-  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--ion-color-medium);
+  margin: 20px 0 16px;
+  padding-left: 6px;
+  opacity: 0.7;
 }
 
 ion-accordion-group {
-  margin-bottom: 2rem;
+  margin-bottom: 14px;
 
   ion-accordion {
-    margin-bottom: 0.75rem;
-    border-radius: 0.75rem;
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      0 1px 2px rgba(0, 0, 0, 0.06);
     overflow: hidden;
 
     ion-item {
-      --padding-start: 1rem;
-      --inner-padding-end: 1rem;
-
-      ion-icon {
-        font-size: 1.3rem;
-        margin-right: 0.75rem;
-      }
+      --padding-start: 12px;
+      --padding-end: 12px;
+      --inner-padding-end: 0;
+      --background: transparent;
+      --min-height: 44px;
 
       .question {
         font-weight: 500;
-        font-size: 0.95rem;
+        font-size: 16px;
+        color: var(--ion-color-dark);
       }
     }
 
     .answer {
-      padding: 1rem 1.25rem;
-      background: var(--ion-color-light);
-      font-size: 0.9rem;
+      padding: 12px 16px;
+      background: rgba(0, 0, 0, 0.02);
+      font-size: 14px;
       line-height: 1.6;
       color: var(--ion-color-dark);
     }
@@ -44,48 +119,68 @@ ion-accordion-group {
 }
 
 .contact-section {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--ion-color-light-shade);
+  margin-top: 20px;
 
   .contact-title {
-    font-size: 1.1rem;
+    font-size: 15px;
     font-weight: 600;
-    color: var(--ion-color-dark);
-    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--ion-color-medium);
+    margin: 0 0 8px;
+    padding-left: 6px;
+    opacity: 0.7;
   }
 
   .contact-description {
-    font-size: 0.9rem;
+    font-size: 14px;
     color: var(--ion-color-medium);
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
+    padding-left: 6px;
   }
 
   .contact-list {
-    background: transparent;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      0 1px 2px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 0;
 
     ion-item {
-      --padding-start: 0;
+      --padding-start: 12px;
+      --padding-end: 12px;
       --inner-padding-end: 0;
       --background: transparent;
-      margin-bottom: 1rem;
+      --border-radius: 0;
+      --min-height: 44px;
+      border-bottom: none;
+
+      &:active {
+        --background: rgba(0, 0, 0, 0.02);
+      }
 
       ion-icon {
-        font-size: 1.3rem;
-        margin-right: 1rem;
+        font-size: 24px !important;
+        margin-right: 10px;
+        color: #000000 !important;
       }
 
       ion-label {
         p {
-          font-size: 0.75rem;
+          font-size: 12px;
           color: var(--ion-color-medium);
           text-transform: uppercase;
           letter-spacing: 0.5px;
-          margin-bottom: 0.25rem;
+          margin-bottom: 4px;
         }
 
         h3 {
-          font-size: 0.95rem;
+          font-size: 14px;
           font-weight: 500;
           color: var(--ion-color-dark);
           margin: 0;
@@ -98,17 +193,40 @@ ion-accordion-group {
 @media (prefers-color-scheme: dark) {
   .section-title,
   .contact-title {
-    color: var(--ion-color-light);
+    color: var(--ion-color-light-shade);
+    opacity: 0.6;
   }
 
-  ion-accordion {
-    .answer {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--ion-color-light);
+  .contact-description {
+    color: var(--ion-color-medium);
+  }
+
+  ion-accordion-group {
+    ion-accordion {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.4);
+
+      ion-item {
+        .question {
+          color: var(--ion-color-light);
+        }
+      }
+
+      .answer {
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--ion-color-light);
+      }
     }
   }
 
   .contact-list {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      0 1px 2px rgba(0, 0, 0, 0.4);
+
     ion-item {
       ion-label {
         h3 {

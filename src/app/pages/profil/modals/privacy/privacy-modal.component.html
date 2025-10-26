@@ -1,15 +1,21 @@
-<ion-header>
+<ion-header [translucent]="false" class="modal-toolbar ion-no-border">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Kebijakan Privasi</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
-        <ion-icon name="close" slot="icon-only"></ion-icon>
+      <!-- Placeholder untuk balance layout -->
+      <ion-button disabled style="visibility: hidden">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   <div class="modal-content">
     <p class="updated-date">Terakhir diperbarui: 1 Januari 2024</p>
 

@@ -14,7 +14,14 @@ import {
   ModalController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { close, informationCircleOutline, codeSlashOutline, buildOutline } from 'ionicons/icons';
+import { 
+  close, 
+  chevronBackOutline,
+  informationCircleOutline, 
+  codeSlashOutline, 
+  buildOutline,
+  calendarOutline
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-about-modal',
@@ -44,7 +51,14 @@ export class AboutModalComponent {
   };
 
   constructor(private modalCtrl: ModalController) {
-    addIcons({ close, informationCircleOutline, codeSlashOutline, buildOutline });
+    addIcons({
+      close,
+      chevronBackOutline,
+      informationCircleOutline,
+      codeSlashOutline,
+      buildOutline,
+      calendarOutline
+    });
   }
 
   dismiss() {
