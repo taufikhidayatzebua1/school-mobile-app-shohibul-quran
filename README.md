@@ -1,296 +1,607 @@
-# SQ Mobile - Sistem Pembelajaran Al-Quran
+# 📱 SQ Mobile App
 
-Aplikasi mobile berbasis Ionic Angular yang terintegrasi dengan backend `sq-backend` untuk sistem pembelajaran Al-Quran.
+<div align="center">
 
-## 📱 Fitur Utama
+![Ionic](https://img.shields.io/badge/Ionic-8.0.0-3880FF?style=for-the-badge&logo=ionic&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-20.0.0-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![Capacitor](https://img.shields.io/badge/Capacitor-6.1.2-119EFF?style=for-the-badge&logo=capacitor&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-- ✅ **Autentikasi dengan Backend** - Login terintegrasi dengan API sq-backend
-- ✅ **No Registration** - Tidak ada halaman register, user dibuat oleh administrator
-- ✅ **Role-based Access** - Mendukung berbagai role: Admin, Kepala Sekolah, Guru, Orang Tua, Siswa
-- ✅ **Token Management** - Automatic token handling dengan interceptor
-- ✅ **Route Guards** - Protected routes untuk keamanan
-- ✅ **Responsive Design** - UI yang optimal untuk berbagai ukuran layar
+**Aplikasi Mobile Sistem Pembelajaran Al-Quran**
 
-## 🏗️ Arsitektur & Best Practices
+Aplikasi mobile berbasis Ionic Angular yang terintegrasi dengan backend `sq-backend` untuk sistem pembelajaran Al-Quran dengan fitur manajemen siswa, guru, dan orang tua.
 
-### Struktur Folder
-```
-sq-mobile/
-├── src/
-│   ├── app/
-│   │   ├── core/                    # Core functionality
-│   │   │   ├── guards/              # Route guards
-│   │   │   │   ├── auth.guard.ts    # Protect authenticated routes
-│   │   │   │   └── login.guard.ts   # Prevent access to login if authenticated
-│   │   │   ├── interceptors/        # HTTP interceptors
-│   │   │   │   └── auth.interceptor.ts  # Add token to requests
-│   │   │   ├── models/              # TypeScript interfaces
-│   │   │   │   └── user.model.ts
-│   │   │   └── services/            # Business logic services
-│   │   │       └── auth.service.ts  # Authentication service
-│   │   ├── pages/                   # Application pages
-│   │   │   └── login/               # Login page
-│   │   │       ├── login.page.ts
-│   │   │       ├── login.page.html
-│   │   │       └── login.page.scss
-│   │   └── home/                    # Home page (protected)
-│   └── environments/                # Environment configurations
-│       ├── environment.ts           # Development config
-│       └── environment.prod.ts      # Production config
-```
+[Demo](#) • [Dokumentasi](#-dokumentasi-lengkap) • [API Docs](API_DOCUMENTATION.md) • [Best Practices](BEST_PRACTICES.md)
 
-### Best Practices Implemented
-
-1. **Separation of Concerns**
-   - Services untuk business logic
-   - Guards untuk route protection
-   - Interceptors untuk HTTP handling
-   - Models untuk type safety
-
-2. **Security**
-   - Token stored in localStorage
-   - Automatic token attachment via interceptor
-   - 401 error handling dengan auto-logout
-   - Route guards untuk unauthorized access prevention
-
-3. **User Experience**
-   - Loading indicators
-   - Toast notifications untuk feedback
-   - Responsive design
-   - Clear error messages
-
-4. **Code Quality**
-   - TypeScript untuk type safety
-   - Standalone components (Angular modern approach)
-   - Reactive programming dengan RxJS
-   - Clean code principles
-
-## 🚀 Setup & Installation
-
-### Prerequisites
-- Node.js (v18 atau lebih baru)
-- npm atau yarn
-- Ionic CLI (`npm install -g @ionic/cli`)
-- Backend `sq-backend` harus sudah running
-
-### Installation Steps
-
-1. **Clone atau navigate ke project folder**
-   ```bash
-   cd d:\Project\sq-mobile\sq-mobile
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Configure Environment**
-   
-   Edit `src/environments/environment.ts` untuk development:
-   ```typescript
-   export const environment = {
-     production: false,
-     apiUrl: 'http://localhost/sq-backend/public/api/v1', // Sesuaikan dengan URL backend Anda
-     apiVersion: 'v1'
-   };
-   ```
-
-   Edit `src/environments/environment.prod.ts` untuk production:
-   ```typescript
-   export const environment = {
-     production: true,
-     apiUrl: 'https://your-domain.com/api/v1', // URL production backend
-     apiVersion: 'v1'
-   };
-   ```
-
-4. **Run Development Server**
-   ```bash
-   ionic serve
-   ```
-   
-   Aplikasi akan berjalan di `http://localhost:8100`
-
-## 📱 Build untuk Mobile
-
-### Android
-
-1. **Add Android platform**
-   ```bash
-   ionic capacitor add android
-   ```
-
-2. **Build the app**
-   ```bash
-   ionic build
-   ionic capacitor copy android
-   ```
-
-3. **Open in Android Studio**
-   ```bash
-   ionic capacitor open android
-   ```
-
-### iOS (Requires macOS)
-
-1. **Add iOS platform**
-   ```bash
-   ionic capacitor add ios
-   ```
-
-2. **Build the app**
-   ```bash
-   ionic build
-   ionic capacitor copy ios
-   ```
-
-3. **Open in Xcode**
-   ```bash
-   ionic capacitor open ios
-   ```
-
-## 🔐 Autentikasi
-
-### Login Flow
-
-1. User mengakses aplikasi → redirect ke `/login`
-2. User input username & password
-3. Aplikasi mengirim request ke `POST /api/v1/auth/login`
-4. Backend memvalidasi credentials
-5. Jika valid, backend mengembalikan token & user data
-6. Token disimpan di localStorage
-7. User diarahkan ke `/home`
-8. Setiap request selanjutnya otomatis menyertakan token via interceptor
-
-### Endpoint Backend yang Digunakan
-
-```
-POST /api/v1/auth/login
-- Body: { username, password }
-- Response: { success, message, data: { user, token } }
-
-POST /api/v1/auth/logout
-- Headers: Authorization: Bearer {token}
-- Response: { success, message }
-
-POST /api/v1/auth/forgot-password
-- Body: { email }
-
-POST /api/v1/auth/reset-password
-- Body: { token, email, password, password_confirmation }
-```
-
-## 🎯 User Flow
-
-1. **Unauthenticated User**
-   - Akses aplikasi → Redirect ke login page
-   - Tidak bisa akses halaman lain tanpa login
-
-2. **Authenticated User**
-   - Login berhasil → Redirect ke home page
-   - Token otomatis disertakan di setiap request
-   - Bisa logout kapan saja
-
-3. **Session Expired (401)**
-   - Interceptor mendeteksi 401 error
-   - Otomatis logout dan clear data
-   - Redirect ke login page
-
-## 📝 Penggunaan
-
-### Testing dengan User Backend
-
-Gunakan user yang sudah ada di backend untuk testing:
-
-```
-Username: admin / kepala_sekolah / guru / orang_tua / siswa
-Password: password (atau sesuai yang di-set di backend)
-```
-
-### Tidak Ada Halaman Register
-
-❌ Aplikasi ini **tidak memiliki halaman register**
-✅ User account dibuat oleh **administrator melalui backend**
-
-Alasan:
-- Sistem sekolah memerlukan kontrol user management
-- Setiap user harus di-approve dan di-assign role yang tepat
-- Data user terintegrasi dengan data siswa, guru, orang tua, dll
-
-## 🛠️ Development
-
-### Adding New Features
-
-1. **Create Service**
-   ```bash
-   ionic generate service core/services/FeatureName
-   ```
-
-2. **Create Page**
-   ```bash
-   ionic generate page pages/PageName
-   ```
-
-3. **Create Guard**
-   ```bash
-   ionic generate guard core/guards/GuardName
-   ```
-
-### API Integration Pattern
-
-```typescript
-// In your service
-getData(): Observable<ApiResponse> {
-  return this.http.get<ApiResponse>(`${environment.apiUrl}/endpoint`)
-    .pipe(
-      map(response => response.data),
-      catchError(error => {
-        console.error('Error:', error);
-        return throwError(() => error);
-      })
-    );
-}
-```
-
-## 🔧 Troubleshooting
-
-### CORS Issues
-Jika mengalami CORS error saat development:
-1. Pastikan backend sudah enable CORS
-2. Check `config/cors.php` di backend
-3. Atau gunakan `ionic serve --proxy-config proxy.conf.json`
-
-### Token Not Included
-Jika token tidak ter-attach:
-1. Check `AuthInterceptor` sudah di-register di `main.ts`
-2. Verify token tersimpan di localStorage
-3. Check console untuk error
-
-### Login Failed
-1. Verify backend running
-2. Check `environment.ts` API URL sudah benar
-3. Check network tab di browser DevTools
-4. Verify credentials valid di backend
-
-## 📚 Resources
-
-- [Ionic Documentation](https://ionicframework.com/docs)
-- [Angular Documentation](https://angular.io/docs)
-- [Capacitor Documentation](https://capacitorjs.com/docs)
-
-## 👥 Roles Supported
-
-- **Admin** - Full access ke semua fitur
-- **Kepala Sekolah** - Manajemen sekolah
-- **Guru** - Input dan monitoring hafalan
-- **Orang Tua** - Monitoring progress anak
-- **Siswa** - View progress dan data pribadi
-
-## 📄 License
-
-Sesuai dengan license backend sq-backend.
+</div>
 
 ---
 
-**Note**: Pastikan backend `sq-backend` sudah running sebelum menggunakan aplikasi ini.
+## 📋 Daftar Isi
+
+- [Tentang Proyek](#-tentang-proyek)
+- [Fitur Utama](#-fitur-utama)
+- [Teknologi](#-teknologi)
+- [Prasyarat](#-prasyarat)
+- [Instalasi](#-instalasi)
+- [Konfigurasi](#-konfigurasi)
+- [Menjalankan Aplikasi](#-menjalankan-aplikasi)
+- [Build & Deploy](#-build--deploy)
+- [Struktur Proyek](#-struktur-proyek)
+- [Dokumentasi Lengkap](#-dokumentasi-lengkap)
+- [Testing](#-testing)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## 🎯 Tentang Proyek
+
+**SQ Mobile** adalah aplikasi mobile cross-platform untuk sistem pembelajaran Al-Quran yang dirancang untuk mendukung ekosistem pendidikan Quran dengan berbagai role pengguna:
+
+- 👨‍💼 **Admin** - Manajemen sistem lengkap
+- 🏫 **Kepala Sekolah** - Monitoring dan pelaporan
+- 👨‍🏫 **Guru** - Pengelolaan kelas dan penilaian
+- 👪 **Orang Tua** - Monitoring perkembangan anak
+- 👨‍🎓 **Siswa** - Akses materi dan tugas
+
+### Keunggulan
+
+✅ **Terintegrasi Penuh** dengan backend API  
+✅ **Secure Authentication** dengan JWT token  
+✅ **Offline-First Approach** (Coming Soon)  
+✅ **Real-time Notifications**  
+✅ **Modern UI/UX** dengan Ionic Components  
+✅ **Cross-Platform** - Android & iOS ready
+
+---
+
+## ✨ Fitur Utama
+
+### 🔐 Authentication & Security
+- [x] Login dengan username & password
+- [x] JWT Token management
+- [x] Auto-logout on token expiration
+- [x] Route guards (auth & login guards)
+- [x] HTTP interceptor untuk automatic token attachment
+- [x] 401 error handling
+
+### 👤 User Profile Management
+- [x] View & edit profile
+- [x] Upload profile picture
+- [x] Role-based profile display
+- [x] Personal information management
+
+### 📱 Core Features
+- [x] Feed/News (Timeline sekolah)
+- [x] Donasi (Donation system)
+- [x] Notifikasi (Push notifications)
+- [x] Bottom navigation tabs
+- [x] Responsive design untuk semua ukuran layar
+
+### 🏗️ Technical Features
+- [x] Clean architecture implementation
+- [x] Type-safe dengan TypeScript
+- [x] Service-based architecture
+- [x] Environment-based configuration
+- [x] Error handling & logging
+- [x] Loading states & UX feedback
+
+---
+
+## 🛠️ Teknologi
+
+### Frontend Framework
+- **Angular** 20.0.0 - Web framework
+- **Ionic** 8.0.0 - UI components
+- **TypeScript** 5.8.0 - Programming language
+- **RxJS** 7.8.0 - Reactive programming
+- **SCSS** - Styling
+
+### Mobile Runtime
+- **Capacitor** 6.1.2 - Native runtime
+- **Android SDK** - Android development
+- iOS (Ready to build)
+
+### Development Tools
+- **Angular CLI** 20.0.0
+- **ESLint** 9.16.0 - Code linting
+- **Karma** 6.4.0 - Unit testing
+- **Jasmine** 5.1.0 - Testing framework
+
+---
+
+## 📦 Prasyarat
+
+Pastikan sistem Anda telah terinstall:
+
+- **Node.js** >= 18.x
+- **npm** >= 9.x atau **yarn** >= 1.22.x
+- **Ionic CLI** >= 7.x
+  ```bash
+  npm install -g @ionic/cli
+  ```
+- **Angular CLI** >= 20.x
+  ```bash
+  npm install -g @angular/cli
+  ```
+
+### Untuk Development Android
+- **Android Studio** (Latest version)
+- **JDK** 17 atau lebih tinggi
+- **Android SDK** (API Level 24+)
+- **Gradle** 8.x
+
+### Untuk Development iOS (Mac only)
+- **Xcode** 14+
+- **CocoaPods**
+
+---
+
+## 🚀 Instalasi
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/your-username/sq-mobile-app.git
+cd sq-mobile-app
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+atau dengan yarn:
+
+```bash
+yarn install
+```
+
+### 3. Install Capacitor
+
+```bash
+npx cap sync
+```
+
+---
+
+## ⚙️ Konfigurasi
+
+### Environment Configuration
+
+Konfigurasi API endpoint di file environment:
+
+**Development** (`src/environments/environment.ts`):
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost/sq-backend/public/api/v1',
+  apiVersion: 'v1'
+};
+```
+
+**Production** (`src/environments/environment.prod.ts`):
+```typescript
+export const environment = {
+  production: true,
+  apiUrl: 'https://api.yourdomain.com/api/v1',
+  apiVersion: 'v1'
+};
+```
+
+### Capacitor Configuration
+
+Edit `capacitor.config.ts` untuk konfigurasi app:
+
+```typescript
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.yourcompany.sqmobile', // Ganti dengan App ID Anda
+  appName: 'SQ Mobile',
+  webDir: 'www'
+};
+
+export default config;
+```
+
+### Proxy Configuration (Development)
+
+Untuk menghindari CORS issue saat development, gunakan proxy di `proxy.conf.json`.
+
+---
+
+## 🏃 Menjalankan Aplikasi
+
+### Development Server (Browser)
+
+```bash
+# Start development server
+npm start
+# atau
+ionic serve
+
+# Dengan live reload
+ionic serve --lab  # Tampilkan iOS, Android, dan web side-by-side
+```
+
+Aplikasi akan berjalan di `http://localhost:8100`
+
+### Run on Android
+
+```bash
+# Build dan sync
+ionic build
+npx cap sync android
+
+# Open in Android Studio
+npx cap open android
+
+# Atau run langsung
+npx cap run android
+```
+
+### Run on iOS (Mac only)
+
+```bash
+# Build dan sync
+ionic build
+npx cap sync ios
+
+# Open in Xcode
+npx cap open ios
+```
+
+---
+
+## 📦 Build & Deploy
+
+### Build untuk Production
+
+```bash
+# Build with production configuration
+npm run build --prod
+# atau
+ionic build --prod
+```
+
+### Build Android APK/AAB
+
+```bash
+# Sync capacitor
+npx cap sync android
+
+# Open Android Studio
+npx cap open android
+```
+
+Di Android Studio:
+1. **Build > Build Bundle(s) / APK(s) > Build APK(s)** untuk APK
+2. **Build > Generate Signed Bundle / APK** untuk release
+
+### Build iOS App (Mac only)
+
+```bash
+# Sync capacitor
+npx cap sync ios
+
+# Open Xcode
+npx cap open ios
+```
+
+Di Xcode:
+1. Select your team/provisioning profile
+2. **Product > Archive**
+3. Upload to App Store Connect
+
+---
+
+## 📁 Struktur Proyek
+
+```
+sq-mobile/
+├── 📱 android/                      # Android native project
+│   ├── app/
+│   │   └── src/main/
+│   └── build.gradle
+│
+├── 📄 src/
+│   ├── app/
+│   │   ├── 🔐 core/                # Core functionality
+│   │   │   ├── guards/             # Route protection
+│   │   │   │   ├── auth.guard.ts
+│   │   │   │   └── login.guard.ts
+│   │   │   ├── interceptors/       # HTTP interceptors
+│   │   │   │   └── auth.interceptor.ts
+│   │   │   ├── models/             # TypeScript models
+│   │   │   │   └── user.model.ts
+│   │   │   └── services/           # Business logic
+│   │   │       └── auth.service.ts
+│   │   │
+│   │   ├── 📄 pages/               # Application pages
+│   │   │   ├── login/             # Login page
+│   │   │   ├── profil/            # Profile page
+│   │   │   ├── feed/              # News feed
+│   │   │   ├── donasi/            # Donation
+│   │   │   └── notifikasi/        # Notifications
+│   │   │
+│   │   ├── 🏠 home/               # Home/Dashboard
+│   │   ├── 📑 tabs/               # Tab navigation
+│   │   ├── app.component.ts       # Root component
+│   │   └── app.routes.ts          # Route configuration
+│   │
+│   ├── 🎨 assets/                 # Static assets
+│   │   └── icon/                  # App icons
+│   │
+│   ├── 🌍 environments/           # Environment configs
+│   │   ├── environment.ts         # Development
+│   │   └── environment.prod.ts    # Production
+│   │
+│   ├── 🎨 theme/                  # Global styles
+│   │   └── variables.scss
+│   │
+│   ├── global.scss                # Global SCSS
+│   ├── index.html                 # Entry HTML
+│   └── main.ts                    # Application bootstrap
+│
+├── 📚 Dokumentasi/
+│   ├── API_DOCUMENTATION.md       # API integration guide
+│   ├── BEST_PRACTICES.md          # Development guidelines
+│   ├── PROJECT_OVERVIEW.md        # Project summary
+│   ├── ENVIRONMENT_CONFIG.md      # Environment setup
+│   ├── USER_MODEL.md              # User data models
+│   ├── CHEATSHEET.md              # Quick commands
+│   └── ... (more docs)
+│
+├── ⚙️ Configuration Files
+│   ├── angular.json               # Angular config
+│   ├── capacitor.config.ts        # Capacitor config
+│   ├── ionic.config.json          # Ionic config
+│   ├── tsconfig.json              # TypeScript config
+│   ├── package.json               # Dependencies
+│   └── .gitignore                 # Git ignore rules
+│
+└── 🌐 www/                        # Built output (generated)
+```
+
+### Architecture Principles
+
+✅ **Clean Architecture**
+- Separation of concerns (guards, services, interceptors)
+- Single responsibility principle
+- Dependency injection
+
+✅ **Type Safety**
+- Full TypeScript implementation
+- Interface-based models
+- Compile-time error checking
+
+✅ **Security First**
+- JWT token management
+- Route guards
+- HTTP interceptor
+- Secure token storage
+
+✅ **Best Practices**
+- ESLint code linting
+- Consistent code style
+- Component-based architecture
+- Reactive programming with RxJS
+
+---
+
+## 📚 Dokumentasi Lengkap
+
+### Setup & Configuration
+- 📖 [**Project Overview**](PROJECT_OVERVIEW.md) - Ringkasan lengkap proyek
+- 📖 [**Installation Summary**](INSTALLATION_SUMMARY.md) - Panduan instalasi detail
+- 📖 [**Quickstart Guide**](QUICKSTART.md) - Mulai dengan cepat
+- 📖 [**Environment Config**](ENVIRONMENT_CONFIG.md) - Konfigurasi environment
+- 📖 [**Cheatsheet**](CHEATSHEET.md) - Command & tips berguna
+
+### Development Guide
+- 📖 [**Best Practices**](BEST_PRACTICES.md) - Panduan development
+- 📖 [**API Documentation**](API_DOCUMENTATION.md) - Integrasi API backend
+- 📖 [**User Model**](USER_MODEL.md) - Struktur data user
+
+### UI/UX Documentation
+- 📖 [**Bottom Navigation**](BOTTOM_NAVIGATION.md) - Tab navigation system
+- 📖 [**Modern Profile Design**](MODERN_PROFILE_DESIGN.md) - Profile page design
+- 📖 [**Tab Icons Update**](TAB_ICONS_UPDATE.md) - Icon customization
+- 📖 [**Profile Modal**](PROFILE_MODAL_UPDATE.md) - Modal components
+- 📖 [**Profile Testing**](PROFIL_PAGE_TESTING.md) - Testing guidelines
+
+---
+
+## 🧪 Testing
+
+### Unit Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+ng test --watch
+```
+
+### E2E Tests
+
+```bash
+# Run e2e tests
+npm run e2e
+```
+
+### Manual Testing Checklist
+
+- [ ] Login functionality
+- [ ] Token persistence
+- [ ] Profile display
+- [ ] Route guards working
+- [ ] API integration
+- [ ] Error handling
+- [ ] Responsive design
+
+---
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**1. CORS Error saat Development**
+```bash
+# Solution: Gunakan proxy configuration
+ionic serve --proxy-config proxy.conf.json
+```
+
+**2. Android Build Failed**
+```bash
+# Clear cache dan rebuild
+cd android
+./gradlew clean
+cd ..
+npx cap sync android
+```
+
+**3. Node Modules Error**
+```bash
+# Reinstall dependencies
+rm -rf node_modules
+npm install
+```
+
+**4. Capacitor Sync Issues**
+```bash
+# Force sync
+npx cap sync --force
+```
+
+---
+
+## 🚀 Roadmap
+
+### Phase 1 (Current) ✅
+- [x] Authentication system
+- [x] User profile management
+- [x] Basic navigation
+- [x] API integration
+
+### Phase 2 (In Progress) 🔄
+- [ ] Offline mode support
+- [ ] Push notifications
+- [ ] Enhanced feed features
+- [ ] File upload/download
+
+### Phase 3 (Planned) 📋
+- [ ] Real-time chat
+- [ ] Video streaming
+- [ ] Advanced reporting
+- [ ] Multi-language support
+
+---
+
+## 🤝 Contributing
+
+Kami menerima kontribusi! Ikuti langkah berikut:
+
+### 1. Fork & Clone
+```bash
+git clone https://github.com/your-username/sq-mobile-app.git
+cd sq-mobile-app
+```
+
+### 2. Create Branch
+```bash
+git checkout -b feature/amazing-feature
+```
+
+### 3. Make Changes
+- Ikuti [Best Practices](BEST_PRACTICES.md)
+- Tulis kode yang clean dan terdokumentasi
+- Tambahkan tests jika diperlukan
+
+### 4. Commit
+```bash
+git add .
+git commit -m "feat: add amazing feature"
+```
+
+**Commit Message Convention:**
+- `feat:` - New feature
+- `fix:` - Bug fix
+- `docs:` - Documentation
+- `style:` - Formatting
+- `refactor:` - Code restructuring
+- `test:` - Adding tests
+- `chore:` - Maintenance
+
+### 5. Push & PR
+```bash
+git push origin feature/amazing-feature
+```
+Kemudian buat Pull Request di GitHub.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License
+
+Copyright (c) 2025 SQ Mobile Team
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files...
+```
+
+---
+
+## 👥 Team & Support
+
+### Development Team
+- 👨‍💻 **Lead Developer** - Full Stack Development
+- 🎨 **UI/UX Designer** - Interface Design
+- 🔧 **Backend Team** - API Development
+
+### Support
+- 📧 Email: support@sqmobile.com
+- 💬 Discord: [Join our community](#)
+- 📱 WhatsApp: +62-xxx-xxxx-xxxx
+- 🐛 Issues: [GitHub Issues](https://github.com/your-username/sq-mobile-app/issues)
+
+---
+
+## 🙏 Acknowledgments
+
+Terima kasih kepada:
+
+- **[Ionic Framework](https://ionicframework.com/)** - Amazing mobile UI framework
+- **[Angular Team](https://angular.io/)** - Powerful web framework
+- **[Capacitor](https://capacitorjs.com/)** - Native mobile runtime
+- **All Contributors** - Everyone who contributed to this project
+
+---
+
+## 📊 Stats & Badges
+
+![GitHub stars](https://img.shields.io/github/stars/your-username/sq-mobile-app?style=social)
+![GitHub forks](https://img.shields.io/github/forks/your-username/sq-mobile-app?style=social)
+![GitHub issues](https://img.shields.io/github/issues/your-username/sq-mobile-app)
+![GitHub license](https://img.shields.io/github/license/your-username/sq-mobile-app)
+
+---
+
+<div align="center">
+
+**[⬆ Back to Top](#-sq-mobile-app)**
+
+Made with ❤️ by SQ Mobile Team
+
+</div>
